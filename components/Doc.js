@@ -5,7 +5,7 @@ class Doc extends React.Component {
 
   getQueries() {
     let { collectionName, docId } = this.props.params;
-    let { userId } = this.context.model.getData();
+    let { userId } = this.context.model.get('_auth', 'session');
     return {
       doc: [collectionName, docId],
       user: ['users', userId]

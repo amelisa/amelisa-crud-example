@@ -6,16 +6,13 @@ import superagent from 'superagent';
 class Login extends React.Component {
 
   getQueries() {
-    let { userId } = this.context.model.getData();
     return {
-      me: ['users', userId]
+      session: ['_auth', 'session']
     };
   }
 
   render() {
-    let { me } = this.props;
-    let { userId } = this.context.model.getData();
-    console.log('render', me, userId);
+    let { session } = this.props;
 
     return (
       <div>
@@ -39,6 +36,9 @@ class Login extends React.Component {
       .set('X-Requested-With', 'XMLHttpRequest')
       .end((err, res) => {
         console.log(err, res.body);
+        if (!err && res.body.success) {
+          this.context.model.set('_auth', 'session', 'loggedIn', true);
+        }
       });
   }
 }

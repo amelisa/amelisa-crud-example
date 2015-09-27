@@ -1,24 +1,32 @@
 import React from 'react';
 import { Link, RouteHandler } from 'react-router';
-import { HtmlLayout, RootComponent } from 'engine';
+import { createContainer } from 'engine';
+import Logout from './Logout';
 
-class App extends RootComponent {
+class App extends React.Component {
+
+  getQueries() {
+    return {
+      status: ['_model', 'status'],
+      session: ['_auth', 'session']
+    };
+  }
 
   render() {
-    let systemData = this.props.model.getSystemData();
-    console.log('App render', systemData)
+    let { status, session } = this.props;
 
     return (
-      <HtmlLayout>
-        <p>Online: {systemData.online ? 'Online' : 'Offline'}</p>
+      <div>
+        <p>Online: {status.online ? 'Yes' : 'No'}</p>
+        <p>Logged In: {session.loggedIn ? 'Yes' : 'No'}</p>
         <Link to='/'>List</Link>
         <Link to='/login'>Login</Link>
         <Link to='/register'>Register</Link>
-        <Link to='/auth/logout'>Logout</Link>
+        <Logout />
         <RouteHandler />
-      </HtmlLayout>
+      </div>
     )
   }
 }
 
-export default App;
+export default createContainer(App, React);

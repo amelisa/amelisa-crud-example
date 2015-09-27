@@ -24,12 +24,13 @@ export default function (store, httpServer, mongoUrl) {
   app.use(auth.middleware(store));
   app.use((req, res, next) => {
     let model = req.getModel();
+    let userId = model.get('_auth', 'session', 'userId');
 
-    model.fetch('users', {}, () => {
-      let users = model.getQuery('users', {});
-      let me = users[0];
-      req.session = req.session || {};
-      if (me) req.session.userId = me._id;
+    console.log(model.get('_auth', 'session'));
+
+    model.fetch('users', userId, () => {
+      let user = model.get('users', userId);
+      model.set('_auth', 'user', 'me', user);
 
       next();
     });
@@ -41,9 +42,6 @@ export default function (store, httpServer, mongoUrl) {
     }
 
     let model = req.getModel();
-    model.setData({
-      userId: req.session.userId
-    });
 
     Router.run(routes, req.url, (Handler) => {
 
