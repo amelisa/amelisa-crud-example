@@ -1,0 +1,48 @@
+{
+  "name": "engine-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "foo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node -- server.js",
+    "gulp": "gulp",
+    "localhost": "sleep 3; which open && open http://localhost:3000",
+    "build": "webpack --verbose --colors --display-error-details --config webpack.client.js",
+    "watch-client": "webpack --verbose --colors --display-error-details --config webpack.client-watch.js && webpack-dev-server --config webpack.client-watch.js",
+    "watch": "concurrent --kill-others 'npm start' 'npm run watch-client' 'npm run localhost'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.0",
+    "connect-mongo": "^0.8.2",
+    "express": "^4.12.4",
+    "express-session": "^1.11.3",
+    "express-ws": "^1.0.0-rc.1",
+    "node-libs-browser": "^0.5.2",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
+    "superagent": "^1.4.0"
+  },
+  "devDependencies": {
+    "babel": "^5.8.21",
+    "babel-core": "^5.5.7",
+    "babel-loader": "^5.1.4",
+    "babel-runtime": "^5.5.7",
+    "babelify": "^6.1.2",
+    "browser-sync": "^2.7.12",
+    "browserify": "^10.2.4",
+    "concurrently": "^0.1.1",
+    "gulp": "^3.9.0",
+    "gulp-postcss": "^5.1.8",
+    "gulp-util": "^3.0.5",
+    "nodemon": "^1.4.1",
+    "postcss": "^4.1.12",
+    "react-hot-loader": "^1.2.7",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.2.2",
+    "webpack": "^1.9.10",
+    "webpack-dev-server": "^1.9.0"
+  }
+}
