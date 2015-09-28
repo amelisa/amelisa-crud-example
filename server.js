@@ -28,6 +28,7 @@ storage
           collectionName: 'auths',
           fields: {
             _id: true,
+            email: true,
             name: true
           }
         }

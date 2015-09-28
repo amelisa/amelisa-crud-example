@@ -3,14 +3,12 @@ import { Route } from 'react-router';
 import Root from '../components/Root';
 import Doc from '../components/Doc';
 import List from '../components/List';
-import Login from '../components/Login';
-import Register from '../components/Register';
+import LoginPage from '../components/LoginPage';
 
 export default (
   <Route handler={Root}>
     <Route name='list' path='/' handler={List} />
-    <Route name='login' path='/login' handler={Login} />
-    <Route name='register' path='/register' handler={Register} />
+    <Route name='login' path='/login' handler={LoginPage} />
     <Route name='doc' path='/:collectionName/:docId' handler={Doc} />
   </Route>
 )

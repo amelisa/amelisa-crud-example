@@ -7,18 +7,19 @@ class List extends React.Component {
   getQueries() {
     let { page = 1 } = this.props.query;
     let { userId } = this.context.model.get('_auth', 'session');
+
     return {
       users: ['users', {$skip: ((page - 1) * 5), $limit: 5, $orderby: {name: 1}}],
       usersCount: ['users', {$count: true}],
-      me: ['users', userId],
+      user: ['users', userId],
       session: ['_auth', 'session']
     };
   }
 
   render() {
-    let { users, usersCount, me, session } = this.props;
+    let { users, usersCount, user, session } = this.props;
     let { userId } = session;
-    console.log('render', users, usersCount, me, userId);
+    console.log('render', users, usersCount, user, userId);
 
     return (
       <div>
