@@ -5,22 +5,21 @@ import { createContainer } from 'engine';
 class App extends React.Component {
 
   getQueries() {
-    let { userId } = this.context.model.get('_auth', 'session');
+    let { userId } = this.context.model.get('_session');
 
     return {
-      status: ['_model', 'status'],
-      session: ['_auth', 'session'],
+      session: ['_session', {}],
       user: ['users', userId]
     };
   }
 
   render() {
-    let { status, session, user } = this.props;
+    let { session, user } = this.props;
     console.log('App render', user)
 
     return (
       <div>
-        <p>Online: {status.online ? 'Yes' : 'No'}</p>
+        <p>Online: {session.online ? 'Yes' : 'No'}</p>
         <p>Logged In: {session.loggedIn ? 'Yes ' + user.email : 'No'}</p>
         <Link to='/'>List</Link>
         <Link to='/login'>Login</Link>

@@ -6,20 +6,21 @@ class List extends React.Component {
 
   getQueries() {
     let { page = 1 } = this.props.query;
-    let { userId } = this.context.model.get('_auth', 'session');
+    let { userId } = this.context.model.get('_session');
 
     return {
       users: ['users', {$skip: ((page - 1) * 5), $limit: 5, $orderby: {name: 1}}],
       usersCount: ['users', {$count: true}],
       user: ['users', userId],
-      session: ['_auth', 'session']
+      userId: ['_session', userId]
     };
   }
 
   render() {
-    let { users, usersCount, user, session } = this.props;
-    let { userId } = session;
-    console.log('render', users, usersCount, user, userId);
+    let { users, usersCount, user, userId } = this.props;
+    console.log('List render', users, usersCount, user, userId);
+
+    if (!users) return <div>empty</div>;
 
     return (
       <div>
@@ -63,24 +64,39 @@ class List extends React.Component {
   add() {
     console.log('add');
     let userId = this.context.model.id();
-    this.context.model.add('users', {_id: userId, name: 'user ' + userId}, (err) => {
-      console.log('add done', err);
-    });
+    this.context.model
+      .add('users', {_id: userId, name: 'user ' + userId})
+      .then(() => {
+        console.log('add done');
+      })
+      .catch((err) => {
+        console.error('add err', err);
+      });
   }
 
   set(userId, event) {
     let value = event.nativeEvent.target.value;
     console.log('set', userId, value);
-    this.context.model.set('users', userId, 'name', value, (err) => {
-      console.log('set done', err);
-    });
+    this.context.model
+      .set(['users', userId, 'name'], value)
+      .then(() => {
+        console.log('set done');
+      })
+      .catch((err) => {
+        console.error('set err', err);
+      });
   }
 
   del(userId) {
     console.log('del', userId);
-    this.context.model.del('users', userId, (err) => {
-      console.log('del done', err);
-    });
+    this.context.model
+      .del(['users', userId])
+      .then(() => {
+        console.log('del done');
+      })
+      .catch((err) => {
+        console.error('del err', err);
+      });
   }
 }
 

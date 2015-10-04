@@ -6,7 +6,7 @@ class LoginPage extends React.Component {
 
   getQueries() {
     return {
-      session: ['_auth', 'session']
+      session: ['_session']
     };
   }
 

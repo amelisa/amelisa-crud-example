@@ -5,7 +5,7 @@ class Doc extends React.Component {
 
   getQueries() {
     let { collectionName, docId } = this.props.params;
-    let { userId } = this.context.model.get('_auth', 'session');
+    let { userId } = this.context.model.get('_session');
 
     return {
       doc: [collectionName, docId],
@@ -17,7 +17,7 @@ class Doc extends React.Component {
     let value = event.nativeEvent.target.value;
     let { collectionName, docId } = this.props.params;
     console.log('set', collectionName, docId, value);
-    this.context.model.set(collectionName, docId, 'name', value);
+    this.context.model.set([collectionName, docId, 'name'], value);
   }
 
   render() {
