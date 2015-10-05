@@ -8,19 +8,20 @@ class App extends React.Component {
     let { userId } = this.context.model.get('_session');
 
     return {
-      session: ['_session', {}],
+      session: ['_session'],
       user: ['users', userId]
     };
   }
 
   render() {
-    let { session, user } = this.props;
+    let { user } = this.props;
+    let { online, loggedIn } = this.context.model.get('_session');
     console.log('App render', user)
 
     return (
       <div>
-        <p>Online: {session.online ? 'Yes' : 'No'}</p>
-        <p>Logged In: {session.loggedIn ? 'Yes ' + user.email : 'No'}</p>
+        <p>Online: {online ? 'Yes' : 'No'}</p>
+        <p>Logged In: {loggedIn ? 'Yes ' + user.email : 'No'}</p>
         <Link to='/'>List</Link>
         <Link to='/login'>Login</Link>
         <RouteHandler />

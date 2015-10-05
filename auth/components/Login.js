@@ -3,18 +3,7 @@ import Base from './Base';
 
 class Login extends Base {
 
-  constructor() {
-    super();
-  }
-
-  getQueries() {
-    return {
-      session: ['_auth', 'session']
-    };
-  }
-
   render() {
-    let { session } = this.props;
     let { sending, error } = this.state;
 
     return (

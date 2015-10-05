@@ -23,6 +23,15 @@ storage
   .then(() => {
 
     let options = {
+      collections: {
+        auths: {
+          client: false
+        },
+        users: {
+          client: true,
+          preload: {}
+        }
+      },
       projections: {
         users: {
           collectionName: 'auths',

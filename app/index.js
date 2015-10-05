@@ -11,7 +11,7 @@ import routes from './routes';
 */
 
 model.once('ready', () => {
-  Router.run(routes, Router.HistoryLocation, function (Handler) {
+  Router.run(routes, Router.HistoryLocation, (Handler) => {
     React.render(<Handler model={model} />, document);
   });
 });

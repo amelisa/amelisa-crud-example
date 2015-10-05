@@ -26,8 +26,6 @@ export default function (store, httpServer, mongoUrl) {
     let model = req.getModel();
     let userId = model.get('_session.userId');
 
-    console.log('userId', userId);
-
     let userDoc = model.doc('users', userId);
     userDoc
       .fetch()
@@ -46,13 +44,18 @@ export default function (store, httpServer, mongoUrl) {
 
     let model = req.getModel();
 
-    Router.run(routes, req.url, (Handler) => {
+    model
+      .prepareBundle()
+      .then(() => {
+        Router.run(routes, req.url, (Handler) => {
 
-      let Factory = React.createFactory(Handler);
-      let html = React.renderToString(Factory({model: model}));
+          let Factory = React.createFactory(Handler);
+          let html = React.renderToString(Factory({model}));
 
-      return res.send(html);
-    });
+          res.send(html);
+        });
+      })
+      .catch(next);
   });
 
   return app;
