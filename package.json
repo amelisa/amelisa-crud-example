@@ -19,11 +19,11 @@
     "connect-mongo": "^0.8.2",
     "express": "^4.12.4",
     "express-session": "^1.11.3",
-    "express-ws": "^1.0.0-rc.1",
     "node-libs-browser": "^0.5.2",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
-    "superagent": "^1.4.0"
+    "superagent": "^1.4.0",
+    "ws": "^0.8.0"
   },
   "devDependencies": {
     "babel": "^5.8.21",

@@ -2,13 +2,12 @@ import express from 'express';
 import React from 'react';
 import Router from 'react-router';
 import routes from '../app/routes';
-import expressWs from 'express-ws';
 import session from 'express-session';
 import auth from 'engine-auth';
 import bodyParser from 'body-parser';
 let MongoStore = require('connect-mongo')(session);
 
-export default function (store, httpServer, mongoUrl) {
+export default function (store, mongoUrl) {
   let sessionOptions = {
     secret: 'secret',
     store: new MongoStore({
@@ -17,7 +16,6 @@ export default function (store, httpServer, mongoUrl) {
   }
 
   let app = express();
-  expressWs(app, httpServer);
   app.use(session(sessionOptions));
   app.use(bodyParser.json());
   app.use(store.modelMiddleware());

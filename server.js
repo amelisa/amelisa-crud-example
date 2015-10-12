@@ -1,6 +1,7 @@
 process.env.DEBUG = '*,-express:*';
 let http = require('http');
 let { MongoStorage, RedisChannel, ServerSocketChannel, Store } = require('engine');
+let WebSocketServer = require('ws').Server;
 
 let port = 3000;
 let mongoUrl = 'mongodb://localhost:27017/engine';
@@ -50,16 +51,19 @@ storage
       done();
     }
 
-    let httpServer = http.createServer();
-    let app = require('./server/app')(store, httpServer, mongoUrl);
-    app.ws('/', (client, req) => {
-      let channel = new ServerSocketChannel(client, req);
-      store.client(channel);
+    let server = http.createServer();
+
+    let app = require('./server/app')(store, mongoUrl);
+    server.on('request', app);
+
+    let wsServer = new WebSocketServer({server});
+
+    wsServer.on('connection', (socket) => {
+      let channel = new ServerSocketChannel(socket, socket.upgradeReq);
+      store.onChannel(channel);
     });
 
-    httpServer.on('request', app);
-
-    httpServer.listen(port, (err) => {
+    server.listen(port, (err) => {
       if (err) {
         console.error('Can\'t start server, Error:', err);
       } else {
