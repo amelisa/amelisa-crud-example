@@ -1,14 +1,8 @@
 process.env.DEBUG = '*,-express:*';
 let http = require('http');
 let { MongoStorage, RedisChannel, ServerSocketChannel, Store } = require('engine');
-/*
-import http from 'http';
-import ws from 'ws';
-import { MongoStorage, Store } from 'engine';
-import app from './server/app';
-*/
 
-let port = 3000; // 3010 + Math.floor(Math.random() * 10);
+let port = 3000;
 let mongoUrl = 'mongodb://localhost:27017/engine';
 let redisUrl = 'redis://localhost:6379/15';
 
@@ -41,7 +35,8 @@ storage
             name: true
           }
         }
-      }
+      },
+      clientStorage: false
     }
 
     let store = new Store(storage, redis, pubsub, options);
