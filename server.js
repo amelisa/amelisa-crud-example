@@ -18,6 +18,7 @@ storage
   .then(() => {
 
     let options = {
+      version: 1,
       collections: {
         auths: {
           client: false
@@ -37,7 +38,7 @@ storage
           }
         }
       },
-      clientStorage: false
+      clientStorage: true
     }
 
     let store = new Store(storage, redis, pubsub, options);

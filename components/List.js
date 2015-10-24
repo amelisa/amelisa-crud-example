@@ -50,14 +50,16 @@ class List extends React.Component {
   asdf() {
     console.log('asdf');
     this.props.setQueries({
-      users: ['users', {name: 'asdf'}]
+      users: ['users', {name: 'asdf'}],
+      usersCount: ['users', {$count: true}]
     });
   }
 
   all() {
     console.log('all');
     this.props.setQueries({
-      users: ['users', {}]
+      users: ['users', {}],
+      usersCount: ['users', {$count: true}]
     });
   }
 

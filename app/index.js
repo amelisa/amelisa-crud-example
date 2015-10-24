@@ -1,4 +1,4 @@
-process.env.DEBUG = '*';
+process.env.DEBUG = '*,-MutableDoc,-RemoteDoc';
 let React = require('react');
 let Router = require('react-router');
 let routes = require('./routes');
