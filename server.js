@@ -24,10 +24,12 @@ storage
           client: false
         },
         users: {
-          client: true,
-          preload: {}
+          client: true
         }
       },
+      preloads: [
+        ['users', {}]
+      ],
       projections: {
         users: {
           collectionName: 'auths',
