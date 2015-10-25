@@ -12,13 +12,14 @@ class List extends React.Component {
       users: ['users', {$skip: ((page - 1) * 5), $limit: 5, $orderby: {name: 1}}],
       usersCount: ['users', {$count: true}],
       user: ['users', userId],
-      userId: ['_session', userId]
+      userId: ['_session', userId],
+      stargazers: ['https://api.github.com/repos/facebook/react/stargazers?per_page=10', []]
     };
   }
 
   render() {
-    let { users, usersCount, user, userId } = this.props;
-    console.log('List render', users, usersCount, user, userId);
+    let { users, usersCount, user, userId, stargazers } = this.props;
+    console.log('List render', {users, usersCount, user, userId, stargazers});
 
     if (!users) return <div>empty</div>;
 
