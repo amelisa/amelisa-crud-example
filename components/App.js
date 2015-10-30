@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, RouteHandler } from 'react-router';
-import { createContainer } from 'engine';
+import { createContainer } from 'amelisa';
 
 class App extends React.Component {
 

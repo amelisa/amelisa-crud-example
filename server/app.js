@@ -3,7 +3,7 @@ import React from 'react';
 import Router from 'react-router';
 import routes from '../app/routes';
 import session from 'express-session';
-import auth from 'engine-auth';
+import auth from 'amelisa-auth';
 import bodyParser from 'body-parser';
 let MongoStore = require('connect-mongo')(session);
 

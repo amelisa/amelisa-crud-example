@@ -23,7 +23,7 @@ config.module = {
 	loaders: [
 		{include: /\.json$/, loaders: ["json-loader"]},
 		{include: /\.js$/, loaders: ["babel-loader?stage=1&optional=runtime"], exclude: /(node_modules)/},
-		{include: /node_modules\/engine\/lib\/index\.js$/, loaders: ["babel-loader?stage=1&optional=runtime"]},
+		{include: /node_modules\/amelisa\/lib\/index\.js$/, loaders: ["babel-loader?stage=1&optional=runtime"]},
 		{include: /\.jsx$/, loaders: ["react-hot", "babel-loader?stage=1&optional=runtime"], exclude: /(node_modules)/}
 	]
 };

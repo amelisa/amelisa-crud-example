@@ -1,5 +1,5 @@
 import React from 'react';
-import { createContainer } from 'engine';
+import { createContainer } from 'amelisa';
 
 class Doc extends React.Component {
 

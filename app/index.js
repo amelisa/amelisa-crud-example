@@ -2,7 +2,7 @@ process.env.DEBUG = '*,-MutableDoc,-RemoteDoc';
 let React = require('react');
 let Router = require('react-router');
 let routes = require('./routes');
-let { getModel } = require('engine');
+let { getModel } = require('amelisa');
 
 let model = getModel();
 

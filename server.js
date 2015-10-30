@@ -1,10 +1,10 @@
 process.env.DEBUG = '*,-express:*';
 let http = require('http');
-let { MongoStorage, RedisChannel, ServerSocketChannel, Store } = require('engine');
+let { MongoStorage, RedisChannel, ServerSocketChannel, Store } = require('amelisa');
 let WebSocketServer = require('ws').Server;
 
 let port = 3000;
-let mongoUrl = 'mongodb://localhost:27017/engine';
+let mongoUrl = 'mongodb://localhost:27017/amelisa';
 let redisUrl = 'redis://localhost:6379/15';
 
 let storage = new MongoStorage(mongoUrl);
