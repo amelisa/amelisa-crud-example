@@ -2,7 +2,7 @@
   "name": "amelisa-crud-example",
   "version": "1.0.0",
   "description": "",
-  "main": "foo.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec babel-node -- server.js",
@@ -13,7 +13,7 @@
     "watch": "concurrent --kill-others 'npm start' 'npm run watch-client' 'npm run localhost'"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.14.0",
     "connect-mongo": "^0.8.2",
