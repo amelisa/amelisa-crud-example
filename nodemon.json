@@ -1,4 +1,4 @@
 {
-  "watch": ["app", "components", "lib", "server", "server.js", "node_modules/amelisa"],
+  "watch": ["server"],
   "ext": "js"
 }

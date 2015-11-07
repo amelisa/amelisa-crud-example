@@ -1,19 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { createContainer } from 'amelisa';
+import { Card, Textfield } from 'react-mdl';
 
 class List extends React.Component {
 
   getQueries() {
-    let { page = 1 } = this.props.query;
+    let { page = 1 } = this.props.location.query;
     let { userId } = this.context.model.get('_session');
 
     return {
       users: ['users', {$skip: ((page - 1) * 5), $limit: 5, $orderby: {name: 1}}],
       usersCount: ['users', {$count: true}],
       user: ['users', userId],
-      userId: ['_session', userId],
-      stargazers: ['https://api.github.com/repos/facebook/react/stargazers?per_page=10', []]
+      userId: ['_session', userId]//,
+      // stargazers: ['https://api.github.com/repos/facebook/react/stargazers?per_page=10', []]
     };
   }
 
@@ -24,18 +25,18 @@ class List extends React.Component {
     if (!users) return <div>empty</div>;
 
     return (
-      <div>
+      <div className='page-content'>
         List ({users.length} from {usersCount})
         {
           users.map(user => {
             let isMe = user._id === userId;
             return (
-              <div key={user._id}>
-                <Link to='doc' params={{collectionName: 'users', docId: user._id}}>{user.name || 'no name'}</Link>
+              <Card key={user._id} className='item' shadowLevel={2}>
+                <Link to={`/users/${user._id}`}>{user.name || 'no name'}</Link>
                 <input onChange={this.set.bind(this, user._id)} value={user.name} />
                 <button onClick={this.del.bind(this, user._id)}>Delete</button>
                 {isMe && 'me'}
-              </div>
+              </Card>
               )
             })
         }

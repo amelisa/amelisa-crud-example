@@ -27,7 +27,7 @@ class Doc extends React.Component {
     if (doc) name = doc.name;
 
     return (
-      <div>
+      <div className='page-content'>
         Doc {name}
         <input onChange={this.set.bind(this)} value={doc.name} />
       </div>
