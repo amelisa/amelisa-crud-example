@@ -6,24 +6,25 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "build": "webpack --verbose --colors --display-error-details --config webpack.prod.babel.js"
+    "build": "webpack --config webpack.prod.babel.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "amelisa-auth": "git+ssh://git@bitbucket.org/vmakhaev/amelisa-auth.git",
     "body-parser": "^1.14.0",
     "connect-mongo": "^0.8.2",
     "express": "^4.12.4",
     "express-session": "^1.11.3",
     "history": "^1.12.5",
-    "react": "^0.14.1",
+    "react": "^0.14.2",
     "react-addons-create-fragment": "^0.14.1",
     "react-addons-pure-render-mixin": "^0.14.1",
     "react-addons-transition-group": "^0.14.1",
     "react-addons-update": "^0.14.1",
     "react-dom": "^0.14.1",
     "react-mdl": "^0.15.0",
-    "react-router": "^1.0.0-rc4",
+    "react-router": "^1.0.0",
     "react-tap-event-plugin": "^0.2.1",
     "superagent": "^1.4.0",
     "ws": "^0.8.0"
@@ -37,7 +38,6 @@
     "css-loader": "^0.21.0",
     "file-loader": "^0.8.4",
     "html-loader": "^0.3.0",
-    "markdown-loader": "^0.1.7",
     "nib": "^1.1.0",
     "nodemon": "^1.8.0",
     "postcss-loader": "^0.7.0",

@@ -1,2 +1,2 @@
-// import './App';
-// import '../styles/index.styl';
+import './App';
+import '../styles/index.styl';

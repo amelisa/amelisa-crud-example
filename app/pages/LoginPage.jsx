@@ -4,6 +4,10 @@ import { Card, Textfield } from 'react-mdl';
 
 class LoginPage extends React.Component {
 
+  static contextTypes = {
+    model: React.PropTypes.object
+  }
+
   render() {
     return (
       <div className='page-content'>
@@ -14,9 +18,5 @@ class LoginPage extends React.Component {
     );
   }
 }
-
-LoginPage.contextTypes = {
-  model: React.PropTypes.object
-};
 
 export default LoginPage;

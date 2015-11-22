@@ -11,6 +11,7 @@ let MongoStore = require('connect-mongo')(session);
 import HtmlLayout from '../app/pages/HtmlLayout';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackConfig from '../webpack.dev.babel';
 
 export default function (store, mongoUrl) {
@@ -21,16 +22,12 @@ export default function (store, mongoUrl) {
     })
   }
 
+  let compiler = webpack(webpackConfig);
+
   let app = express();
 
-  let compiler = webpack(webpackConfig);
-  app.use(webpackDevMiddleware(compiler, {
-    publicPath: '/js/',
-    stats: {
-      colors: true
-    }
-  }));
-  app.use(require('webpack-hot-middleware')(compiler));
+  app.use(webpackDevMiddleware(compiler, webpackConfig.devServer));
+  app.use(webpackHotMiddleware(compiler));
 
   app.use(express.static(process.cwd() + '/public'))
     .use(session(sessionOptions))

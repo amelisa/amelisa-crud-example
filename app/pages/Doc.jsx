@@ -1,7 +1,13 @@
 import React from 'react';
 import { createContainer } from 'amelisa';
+import { Layout, Content } from 'react-mdl';
+import { Header } from '../components/layout'
 
 class Doc extends React.Component {
+
+  static contextTypes = {
+    model: React.PropTypes.object
+  }
 
   getQueries() {
     let { collectionName, docId } = this.props.params;
@@ -27,16 +33,17 @@ class Doc extends React.Component {
     if (doc) name = doc.name;
 
     return (
-      <div className='page-content'>
-        Doc {name}
-        <input onChange={this.set.bind(this)} value={doc.name} />
-      </div>
+      <Layout fixedHeader={true}>
+        <Header />
+        <Content>
+          <div className='page-content'>
+            Doc {name}
+            <input onChange={this.set.bind(this)} value={doc.name} />
+          </div>
+        </Content>
+      </Layout>
     );
   }
 }
-
-Doc.contextTypes = {
-  model: React.PropTypes.object
-};
 
 export default createContainer(Doc, React);
