@@ -1,27 +1,23 @@
-import React from 'react';
-import Base from './Base';
-import { Card, Button } from 'react-mdl';
+import React from 'react'
+import Base from './Base'
+import { Card, Button } from 'react-mdl'
 
 class Logout extends Base {
 
-  render() {
-    let { sending, error } = this.state;
+  render () {
+    let { sending, error } = this.state
 
     return (
       <Card className='form' shadowLevel={2}>
         <Button onClick={this.logout.bind(this)} disabled={sending}>Logout</Button>
         <span className='error'>{error}</span>
       </Card>
-    );
+    )
   }
 
-  logout() {
-    this.send({}, '/auth/logout');
+  logout () {
+    this.send({}, '/auth/logout')
   }
 }
 
-Logout.contextTypes = {
-  model: React.PropTypes.object
-};
-
-export default Logout;
+export default Logout

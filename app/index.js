@@ -1,2 +1,5 @@
-import './App';
-import '../styles/index.styl';
+import './App'
+
+if (process.env.NODE_ENV !== 'production') {
+  require('../public/css/apps/app.styles.css')
+}

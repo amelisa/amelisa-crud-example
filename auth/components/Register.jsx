@@ -1,11 +1,11 @@
-import React from 'react';
-import Base from './Base';
-import { Card, Textfield, Button } from 'react-mdl';
+import React from 'react'
+import Base from './Base'
+import { Card, Textfield, Button } from 'react-mdl'
 
 class Register extends Base {
 
-  render() {
-    let { sending, error } = this.state;
+  render () {
+    let { sending, error } = this.state
 
     return (
       <Card className='form' shadowLevel={2}>
@@ -15,13 +15,13 @@ class Register extends Base {
         <Button onClick={this.register.bind(this)} disabled={sending}>Register</Button>
         <span className='error'>{error}</span>
       </Card>
-    );
+    )
   }
 
-  register() {
-    let email = this.refs.email.refs.input.value;
-    let password = this.refs.password.refs.input.value;
-    let confirm = this.refs.confirm.refs.input.value;
+  register () {
+    let email = this.refs.email.refs.input.value
+    let password = this.refs.password.refs.input.value
+    let confirm = this.refs.confirm.refs.input.value
 
     let data = {
       email,
@@ -29,12 +29,8 @@ class Register extends Base {
       confirm
     }
 
-    this.send(data, '/auth/register');
+    this.send(data, '/auth/register')
   }
 }
 
-Register.contextTypes = {
-  model: React.PropTypes.object
-};
-
-export default Register;
+export default Register

@@ -1,9 +1,9 @@
-import React from 'react';
-import {Route, Redirect, IndexRoute} from 'react-router';
-import Root from './pages/Root';
-import Doc from './pages/Doc';
-import LoginPage from './pages/LoginPage';
-import List from './pages/List';
+import React from 'react'
+import { Route, IndexRoute } from 'react-router'
+import Root from './pages/Root'
+import Doc from './pages/Doc'
+import LoginPage from './pages/LoginPage'
+import List from './pages/List'
 
 let Routes = (
   <Route path='/' component={Root}>
@@ -13,4 +13,4 @@ let Routes = (
   </Route>
 )
 
-export default Routes;
+export default Routes

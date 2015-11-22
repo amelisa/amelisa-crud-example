@@ -5,12 +5,17 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
-    "build": "webpack --config webpack.prod.babel.js"
+    "lint": "standard | snazzy",
+    "start": "concurrent 'npm run dev-styles' 'npm run dev-server'",
+    "dev-server": "nodemon server.js",
+    "dev-styles": "gulp",
+    "prod-server": "NODE_ENV=production node server.js",
+    "build": "gulp build && webpack --progress --config webpack.prod.babel.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "amelisa": "git+ssh://git@bitbucket.org/vmakhaev/amelisa.git",
     "amelisa-auth": "git+ssh://git@bitbucket.org/vmakhaev/amelisa-auth.git",
     "body-parser": "^1.14.0",
     "connect-mongo": "^0.8.2",
@@ -33,19 +38,40 @@
     "autoprefixer": "^6.0.3",
     "babel": "^5.8.23",
     "babel-core": "^5.6.2",
+    "babel-eslint": "^4.1.5",
     "babel-loader": "^5.1.4",
     "babel-runtime": "^5.6.2",
+    "concurrently": "^1.0.0",
     "css-loader": "^0.21.0",
-    "file-loader": "^0.8.4",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-postcss": "^6.0.1",
+    "gulp-stylus": "^2.1.0",
     "html-loader": "^0.3.0",
     "nib": "^1.1.0",
     "nodemon": "^1.8.0",
-    "postcss-loader": "^0.7.0",
+    "postcss-filename-prefix": "^0.1.0",
+    "postcss-loader": "^0.8.0",
     "react-hot-loader": "^1.3.0",
+    "react-prefix-loader": "^0.1.0",
+    "snazzy": "^2.0.1",
+    "standard": "^5.4.1",
     "style-loader": "^0.13.0",
     "stylus-loader": "^1.4.0",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^2.4.1"
+  },
+  "standard": {
+    "globals": [
+      "assert",
+      "describe",
+      "it",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach"
+    ],
+    "parser": "babel-eslint"
   }
 }

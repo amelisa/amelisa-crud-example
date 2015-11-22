@@ -1,6 +1,5 @@
-import React from 'react';
-import { Login, Logout, Register } from '../../auth/components';
-import { Card, Textfield } from 'react-mdl';
+import React from 'react'
+import { Login, Logout, Register } from '../../auth/components'
 
 class LoginPage extends React.Component {
 
@@ -8,15 +7,15 @@ class LoginPage extends React.Component {
     model: React.PropTypes.object
   }
 
-  render() {
+  render () {
     return (
       <div className='page-content'>
         <Login />
         <Logout />
         <Register />
       </div>
-    );
+    )
   }
 }
 
-export default LoginPage;
+export default LoginPage

@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router';
-import { createContainer } from 'amelisa';
-import { Header as MdlHeader, Navigation, Spacer } from 'react-mdl';
+import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
+import { createContainer } from 'amelisa'
+import { Header as MdlHeader, Navigation, Spacer } from 'react-mdl'
 
 class Header extends React.Component {
 
@@ -9,8 +9,12 @@ class Header extends React.Component {
     model: React.PropTypes.object
   }
 
-  getQueries() {
-    let { userId } = this.context.model.get('_session');
+  static propTypes = {
+    user: PropTypes.object
+  }
+
+  getQueries () {
+    let { userId } = this.context.model.get('_session')
 
     return {
       session: ['_session'],
@@ -18,9 +22,9 @@ class Header extends React.Component {
     }
   }
 
-  render() {
-    let { children, user } = this.props;
-    let { online, loggedIn } = this.context.model.get('_session');
+  render () {
+    let { user } = this.props
+    let { online, loggedIn } = this.context.model.get('_session')
     console.log('Header render', online, loggedIn, user)
 
     return (
@@ -37,4 +41,4 @@ class Header extends React.Component {
   }
 }
 
-export default createContainer(Header, React);
+export default createContainer(Header, React)

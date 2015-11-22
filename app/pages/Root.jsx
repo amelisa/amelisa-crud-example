@@ -1,13 +1,12 @@
-import React from 'react';
-import { RootComponent } from 'amelisa';
+import { RootComponent } from 'amelisa'
 
 class Root extends RootComponent {
 
-  render() {
+  render () {
     let { children } = this.props
 
     return children
   }
 }
 
-export default Root;
+export default Root
