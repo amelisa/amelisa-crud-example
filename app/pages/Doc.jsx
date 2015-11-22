@@ -42,10 +42,8 @@ class Doc extends React.Component {
       <Layout fixedHeader={true}>
         <Header />
         <Content>
-          <div className='page-content'>
-            Doc {name}
-            <input onChange={this.set.bind(this)} value={doc.name} />
-          </div>
+          Doc {name}
+          <input onChange={this.set.bind(this)} value={doc.name} />
         </Content>
       </Layout>
     )

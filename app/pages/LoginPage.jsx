@@ -1,5 +1,7 @@
 import React from 'react'
 import { Login, Logout, Register } from '../../auth/components'
+import { Layout, Content } from 'react-mdl'
+import { Header } from '../components/layout'
 
 class LoginPage extends React.Component {
 
@@ -9,11 +11,14 @@ class LoginPage extends React.Component {
 
   render () {
     return (
-      <div className='page-content'>
-        <Login />
-        <Logout />
-        <Register />
-      </div>
+      <Layout fixedHeader={true}>
+        <Header />
+        <Content>
+          <Login />
+          <Logout />
+          <Register />
+        </Content>
+      </Layout>
     )
   }
 }

@@ -6,7 +6,7 @@ import { Header as MdlHeader, Navigation, Spacer } from 'react-mdl'
 class Header extends React.Component {
 
   static contextTypes = {
-    model: React.PropTypes.object
+    model: PropTypes.object
   }
 
   static propTypes = {
@@ -34,6 +34,7 @@ class Header extends React.Component {
           <span>Online: {online ? 'Yes' : 'No'}</span>
           <span>Logged In: {loggedIn ? 'Yes ' + user.email : 'No'}</span>
           <Link to='/'>List</Link>
+          <Link to='/create'>Create</Link>
           <Link to='/login'>Login</Link>
         </Navigation>
       </MdlHeader>

@@ -24,6 +24,9 @@ storage
         },
         users: {
           client: true
+        },
+        items: {
+          client: true
         }
       },
       preloads: [

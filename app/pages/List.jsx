@@ -12,8 +12,8 @@ class List extends React.Component {
 
   static propTypes = {
     location: PropTypes.object,
-    users: PropTypes.array,
-    usersCount: PropTypes.number,
+    items: PropTypes.array,
+    itemsCount: PropTypes.number,
     user: PropTypes.object,
     userId: PropTypes.string,
     setQueries: PropTypes.func
@@ -24,100 +24,68 @@ class List extends React.Component {
     let { userId } = this.context.model.get('_session')
 
     return {
-      users: ['users', {$skip: ((page - 1) * 5), $limit: 5, $orderby: {name: 1}}],
-      usersCount: ['users', {$count: true}],
+      items: ['items', {$skip: ((page - 1) * 5), $limit: 5, $orderby: {name: 1}}],
+      itemsCount: ['items', {$count: true}],
       user: ['users', userId],
-      userId: ['_session', userId]
+      userId: ['_session', 'userId']
     }
   }
 
   render () {
-    let { users, usersCount, user, userId } = this.props
-    console.log('List render', {users, usersCount, user, userId})
+    let { items, itemsCount, user, userId } = this.props
+    console.log('List render', {items, itemsCount, user, userId})
 
-    if (!users) return <div>empty users</div>
+    if (!items) return <div>empty items</div>
 
     return (
       <Layout fixedHeader={true}>
         <Header />
         <Content>
-          <div className='page-content'>
-            List ({users.length} from {usersCount})
-            {
-              users.map(user => {
-                let isMe = user._id === userId
-                return (
-                  <Card key={user._id} className='item' shadowLevel={2}>
-                    <Link to={`/users/${user._id}`}>{user.name || 'no name'}</Link>
-                    <input onChange={this.set.bind(this, user._id)} value={user.name} />
-                    <button onClick={this.del.bind(this, user._id)}>Delete</button>
-                    {isMe && 'me'}
-                  </Card>
-                  )
-              })
-            }
-            <button onClick={this.asdf.bind(this)}>asdf</button>
-            <button onClick={this.all.bind(this)}>all</button>
-            <button onClick={this.add.bind(this)}>add</button>
-            <Link to='list' query={{page: 1}}>Page 1</Link>
-            <Link to='list' query={{page: 2}}>Page 2</Link>
-          </div>
+          List ({items.length} from {itemsCount})
+          {
+            items.map(item => {
+              let isMe = item.userId === userId
+              return (
+                <Card key={item._id} className='item' shadowLevel={2}>
+                  <Link to={`/items/${item._id}`}>{item.name || 'no name'}</Link>
+                  <input onChange={this.set.bind(this, item._id)} value={item.name} />
+                  <button onClick={this.del.bind(this, item._id)}>Delete</button>
+                  {isMe && 'me'}
+                </Card>
+                )
+            })
+          }
+          <button onClick={this.add.bind(this)}>add</button>
+          <Link to='list' query={{page: 1}}>Page 1</Link>
+          <Link to='list' query={{page: 2}}>Page 2</Link>
         </Content>
       </Layout>
     )
   }
 
-  asdf () {
-    console.log('asdf')
-    this.props.setQueries({
-      users: ['users', {name: 'asdf'}],
-      usersCount: ['users', {$count: true}]
-    })
-  }
-
-  all () {
-    console.log('all')
-    this.props.setQueries({
-      users: ['users', {}],
-      usersCount: ['users', {$count: true}]
-    })
-  }
-
   add () {
-    console.log('add')
-    let userId = this.context.model.id()
+    let itemId = this.context.model.id()
     this.context.model
-      .add('users', {_id: userId, name: 'user ' + userId})
-      .then(() => {
-        console.log('add done')
-      })
+      .add('items', {_id: itemId, name: 'item ' + itemId})
       .catch((err) => {
-        console.error('add err', err)
+        console.error('add error', err)
       })
   }
 
-  set (userId, event) {
+  set (itemId, event) {
     let value = event.nativeEvent.target.value
-    console.log('set', userId, value)
     this.context.model
-      .set(['users', userId, 'name'], value)
-      .then(() => {
-        console.log('set done')
-      })
+      .set(['items', itemId, 'name'], value)
       .catch((err) => {
-        console.error('set err', err)
+        console.error('set error', err)
       })
   }
 
-  del (userId) {
-    console.log('del', userId)
+  del (itemId) {
     this.context.model
-      .del(['users', userId])
-      .then(() => {
-        console.log('del done')
-      })
+      .del(['items', itemId])
       .catch((err) => {
-        console.error('del err', err)
+        console.error('del error', err)
       })
   }
 }
