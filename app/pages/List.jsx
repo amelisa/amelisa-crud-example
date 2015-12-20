@@ -21,19 +21,16 @@ class List extends React.Component {
 
   getQueries () {
     let { page = 1 } = this.props.location.query
-    let { userId } = this.context.model.get('_session')
 
     return {
       items: ['items', {$skip: ((page - 1) * 5), $limit: 5, $orderby: {name: 1}}],
       itemsCount: ['items', {$count: true}],
-      user: ['users', userId],
       userId: ['_session', 'userId']
     }
   }
 
   render () {
-    let { items, itemsCount, user, userId } = this.props
-    console.log('List render', {items, itemsCount, user, userId})
+    let { items, itemsCount, userId } = this.props
 
     if (!items) return <div>empty items</div>
 

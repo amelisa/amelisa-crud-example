@@ -1,17 +1,18 @@
 import express from 'express'
 import React from 'react'
-import { renderToStaticMarkup, createElement } from 'amelisa'
-import { match, RoutingContext } from 'react-router'
-import routes from '../app/Routes'
+// import { renderToString } from 'react-dom/server'
 import session from 'express-session'
+import { createElement, renderToStaticMarkup } from 'amelisa'
 import auth from 'amelisa-auth'
 import bodyParser from 'body-parser'
 let MongoStore = require('connect-mongo')(session)
 import HtmlLayout from '../app/pages/HtmlLayout'
+import { match, RoutingContext } from 'react-router'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackConfig from '../webpack.dev.babel'
+import routes from '../app/Routes'
 
 export default function (store, mongoUrl) {
   let sessionOptions = {

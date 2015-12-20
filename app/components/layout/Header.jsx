@@ -25,7 +25,6 @@ class Header extends React.Component {
   render () {
     let { user } = this.props
     let { online, loggedIn } = this.context.model.get('_session')
-    console.log('Header render', online, loggedIn, user)
 
     return (
       <MdlHeader title='Crud'>

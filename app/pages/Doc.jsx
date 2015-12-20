@@ -17,11 +17,9 @@ class Doc extends React.Component {
 
   getQueries () {
     let { collectionName, docId } = this.props.params
-    let { userId } = this.context.model.get('_session')
 
     return {
-      doc: [collectionName, docId],
-      user: ['users', userId]
+      doc: [collectionName, docId]
     }
   }
 
@@ -33,17 +31,15 @@ class Doc extends React.Component {
   }
 
   render () {
-    let { doc, user } = this.props
-    console.log('render', doc, user)
-    let name = 'no name'
-    if (doc) name = doc.name
+    let { doc } = this.props
+    let name = doc ? doc.name : 'no name'
 
     return (
       <Layout fixedHeader={true}>
         <Header />
         <Content>
           Doc {name}
-          <input onChange={this.set.bind(this)} value={doc.name} />
+          <input onChange={this.set.bind(this)} value={name} />
         </Content>
       </Layout>
     )
