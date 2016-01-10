@@ -33,10 +33,10 @@ module.exports = {
       {include: /\.css$/, loaders: ['style', 'css']}
     ]
   },
+  resolveLoader: {
+    root: __dirname + '/node_modules'
+  },
   resolve: {
-    modulesDirectories: [
-      'node_modules'
-    ],
     extensions: ['', '.json', '.js', '.jsx']
   },
   node: {
