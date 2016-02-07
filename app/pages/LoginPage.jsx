@@ -7,7 +7,7 @@ class LoginPage extends React.Component {
 
   static contextTypes = {
     model: React.PropTypes.object
-  }
+  };
 
   render () {
     return (

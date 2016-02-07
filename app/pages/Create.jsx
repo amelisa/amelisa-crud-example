@@ -8,11 +8,11 @@ class Create extends React.Component {
   static contextTypes = {
     model: React.PropTypes.object.isRequired,
     history: React.PropTypes.object.isRequired
-  }
+  };
 
   static propTypes = {
     userId: PropTypes.string
-  }
+  };
 
   getQueries () {
     return {
@@ -52,7 +52,7 @@ class Create extends React.Component {
       .catch((err) => {
         window.alert(err)
       })
-  }
+  };
 }
 
 export default createContainer(Create, React)

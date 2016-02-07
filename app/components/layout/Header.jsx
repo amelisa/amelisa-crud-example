@@ -7,11 +7,11 @@ class Header extends React.Component {
 
   static contextTypes = {
     model: PropTypes.object
-  }
+  };
 
   static propTypes = {
     user: PropTypes.object
-  }
+  };
 
   getQueries () {
     let { userId } = this.context.model.get('_session')

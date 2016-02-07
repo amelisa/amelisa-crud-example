@@ -7,13 +7,13 @@ class Doc extends React.Component {
 
   static contextTypes = {
     model: React.PropTypes.object
-  }
+  };
 
   static propTypes = {
     doc: PropTypes.object,
     params: PropTypes.object,
     user: PropTypes.object
-  }
+  };
 
   getQueries () {
     let { collectionName, docId } = this.props.params

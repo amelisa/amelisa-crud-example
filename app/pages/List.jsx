@@ -8,7 +8,7 @@ class List extends React.Component {
 
   static contextTypes = {
     model: React.PropTypes.object
-  }
+  };
 
   static propTypes = {
     location: PropTypes.object,
@@ -17,7 +17,7 @@ class List extends React.Component {
     user: PropTypes.object,
     userId: PropTypes.string,
     setQueries: PropTypes.func
-  }
+  };
 
   getQueries () {
     let { page = 1 } = this.props.location.query
