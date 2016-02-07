@@ -6,6 +6,8 @@ import createBrowserHistory from 'history/lib/createBrowserHistory'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import { getModel } from 'amelisa'
 
+// require('events').EventEmitter.prototype._maxListeners = 100
+
 // Needed for onTouchTap
 // Can go away when react 1.0 release
 // Check this repo:

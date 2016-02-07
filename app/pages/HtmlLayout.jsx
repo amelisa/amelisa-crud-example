@@ -20,7 +20,7 @@ class HtmlLayout extends React.Component {
       <html>
         <head>
           <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-          <link rel='stylesheet' href='/extra/material.css' />
+          <link rel='stylesheet' href='/extra/material.min.css' />
           <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons' />
           {style}
         </head>
@@ -28,8 +28,8 @@ class HtmlLayout extends React.Component {
           <div id='app'>
             {children}
           </div>
+          <script defer src='/extra/material.min.js' />
           <script defer src='/js/bundle.js' />
-          <script defer src='/extra/material.js' />
           <script type='application/json' id='bundle' dangerouslySetInnerHTML={{__html: json}}></script>
         </body>
       </html>
