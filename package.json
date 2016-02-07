@@ -15,8 +15,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "amelisa": "git+ssh://git@bitbucket.org/vmakhaev/amelisa.git",
-    "amelisa-auth": "git+ssh://git@bitbucket.org/vmakhaev/amelisa-auth.git",
+    "amelisa": "^0.1.0",
+    "amelisa-auth": "^0.1.0",
     "body-parser": "^1.14.0",
     "connect-mongo": "^0.8.2",
     "express": "^4.12.4",
