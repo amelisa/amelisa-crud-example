@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Login, Logout, Register } from '../../auth/components'
 import { Layout, Content } from 'react-mdl'
+import { createContainer } from 'amelisa'
 import { Header } from '../components/layout'
 
 class LoginPage extends React.Component {
@@ -9,18 +10,44 @@ class LoginPage extends React.Component {
     model: React.PropTypes.object
   };
 
+  static propTypes = {
+    loggedIn: PropTypes.bool
+  };
+
+  getQueries () {
+    return {
+      user: ['users', '1'],
+      loggedIn: ['_session', 'loggedIn']
+    }
+  }
+
   render () {
+    let { loggedIn } = this.props
+
+    let content
+
+    if (loggedIn) {
+      content = (
+        <Content>
+          <Logout />
+        </Content>
+      )
+    } else {
+      content = (
+        <Content>
+          <Login />
+          <Register />
+        </Content>
+      )
+    }
+
     return (
       <Layout fixedHeader={true}>
         <Header />
-        <Content>
-          <Login />
-          <Logout />
-          <Register />
-        </Content>
+        {content}
       </Layout>
     )
   }
 }
 
-export default LoginPage
+export default createContainer(LoginPage)

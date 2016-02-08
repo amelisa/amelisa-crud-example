@@ -10,21 +10,23 @@ class Header extends React.Component {
   };
 
   static propTypes = {
-    user: PropTypes.object
+    user: PropTypes.object,
+    online: PropTypes.bool,
+    loggedIn: PropTypes.bool
   };
 
   getQueries () {
     let { userId } = this.context.model.get('_session')
 
     return {
-      session: ['_session'],
-      user: ['users', userId]
+      user: ['users', userId],
+      online: ['_session', 'online'],
+      loggedIn: ['_session', 'loggedIn']
     }
   }
 
   render () {
-    let { user } = this.props
-    let { online, loggedIn } = this.context.model.get('_session')
+    let { user, online, loggedIn } = this.props
 
     return (
       <MdlHeader title='Crud'>

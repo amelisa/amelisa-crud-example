@@ -3,6 +3,7 @@ import React from 'react'
 import session from 'express-session'
 import { createElement, renderToStaticMarkup } from 'amelisa'
 import auth from 'amelisa-auth'
+import bodyParser from 'body-parser'
 let MongoStore = require('connect-mongo')(session)
 import HtmlLayout from '../app/pages/HtmlLayout'
 import { match, RoutingContext } from 'react-router'
@@ -34,6 +35,7 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.static(process.cwd() + '/public'))
   .use(session(sessionOptions))
+  .use(bodyParser.json())
   .use(store.modelMiddleware())
   .use(auth.middleware(store, authOptions))
 
@@ -41,17 +43,6 @@ app.use(express.static(process.cwd() + '/public'))
 //   if (!req.session.loggedIn && req.path.indexOf('/login') === -1) {
 //     return res.redirect('/login')
 //   }
-//   next()
-// }))
-
-// app.use(wrap(async (req, res, next) => {
-//   let model = req.getModel()
-//   let userId = model.get('_session.userId')
-//
-//   let $user = model.doc('users', userId)
-//   await $user.fetch()
-//   let user = $user.get()
-//   model.set('_session.user', user)
 //   next()
 // }))
 
@@ -81,9 +72,8 @@ app.use(wrap(async (req, res, next) => {
     renderProps.createElement = createElement
 
     let children = <RoutingContext {...renderProps} />
-
+    // console.log(req.url)
     let html = await renderToStaticMarkup(HtmlLayout, {model}, children)
-
     return res.status(200).send(html)
   } else {
     return res.status(404).send('Not found')
