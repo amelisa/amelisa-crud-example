@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import { createContainer } from 'amelisa'
-import { Header as MdlHeader, Navigation, Spacer } from 'react-mdl'
+import { Header as MdlHeader, HeaderRow, Icon, Navigation, Spacer } from 'react-mdl'
 
 class Header extends React.Component {
 
@@ -29,15 +29,19 @@ class Header extends React.Component {
     let { user, online, loggedIn } = this.props
 
     return (
-      <MdlHeader title='Crud'>
-        <Spacer />
-        <Navigation className='mdl-layout--large-screen-only'>
-          <span>Online: {online ? 'Yes' : 'No'}</span>
-          <span>Logged In: {loggedIn ? 'Yes ' + user.email : 'No'}</span>
-          <Link to='/'>List</Link>
-          <Link to='/create'>Create</Link>
-          <Link to='/login'>Login</Link>
-        </Navigation>
+      <MdlHeader>
+        <HeaderRow>
+          <Link className='mdl-layout__drawer-button' to='/'>
+            <Icon name='list' />
+          </Link>
+          <Spacer />
+          <Navigation className='mdl-layout--large-screen-only'>
+            <span>Online: {online ? 'Yes' : 'No'}</span>
+            <span>Logged In: {loggedIn ? 'Yes ' + user.email : 'No'}</span>
+            <Link to='/create'>Create</Link>
+            <Link to='/login'>Login</Link>
+          </Navigation>
+        </HeaderRow>
       </MdlHeader>
     )
   }
