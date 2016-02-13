@@ -1,6 +1,6 @@
 import store from './store'
 
-store.hook = async (op, session, params) => {
+store.preHook = async (op, session, params) => {
   let { type, collectionName, docId } = op
 
   // some code that runs before op is applied
