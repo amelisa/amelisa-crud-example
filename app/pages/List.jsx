@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
-import { createContainer } from 'amelisa'
+import { createContainer } from 'amelisa/react'
 import { Layout, Content, Card } from 'react-mdl'
 import { Header } from '../components/layout'
 

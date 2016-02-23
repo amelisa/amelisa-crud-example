@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Layout, Content, Button, Textfield } from 'react-mdl'
 import { Header } from '../components/layout'
-import { createContainer } from 'amelisa'
+import { createContainer } from 'amelisa/react'
 
 class Create extends React.Component {
 

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { createContainer } from 'amelisa'
+import { createContainer } from 'amelisa/react'
 import { Layout, Content } from 'react-mdl'
 import { Header } from '../components/layout'
 

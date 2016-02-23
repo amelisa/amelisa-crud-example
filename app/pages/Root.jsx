@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { RootComponent } from 'amelisa'
+import { RootComponent } from 'amelisa/react'
 import Loading from '../../components/Loading'
 let isServer = process.title !== 'browser'
 

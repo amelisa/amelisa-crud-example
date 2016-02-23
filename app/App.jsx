@@ -4,7 +4,7 @@ import { Router } from 'react-router'
 import Routes from './Routes'
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import injectTapEventPlugin from 'react-tap-event-plugin'
-import { getModel } from 'amelisa'
+import { getModel } from 'amelisa/react'
 
 // require('events').EventEmitter.prototype._maxListeners = 100
 
