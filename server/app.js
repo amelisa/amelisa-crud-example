@@ -59,7 +59,7 @@ function matchUrl (location) {
 app.use(wrap(async (req, res, next) => {
   let model = req.getModel()
 
-  await model.prepareBundle()
+  model.prepareBundle()
 
   let { redirectLocation, renderProps } = await matchUrl(req.url)
 
