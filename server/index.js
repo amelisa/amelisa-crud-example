@@ -1,6 +1,6 @@
 import '../config'
 import http from 'http'
-import { ServerSocketChannel } from 'amelisa'
+import { ServerSocketChannel } from 'amelisa/server'
 import { Server as WebSocketServer } from 'ws'
 import app from './app'
 import store from './store'
