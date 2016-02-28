@@ -16,7 +16,6 @@ class LoginPage extends React.Component {
 
   getQueries () {
     return {
-      user: ['users', '1'],
       loggedIn: ['_session', 'loggedIn']
     }
   }
