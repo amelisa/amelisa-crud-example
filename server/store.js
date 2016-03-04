@@ -1,4 +1,4 @@
-import { MongoStorage, RedisChannel, Store } from 'amelisa/server'
+import { MongoStorage, RedisPubsub, Store } from 'amelisa/server'
 
 const options = {
   version: 1,
@@ -27,15 +27,13 @@ const options = {
 }
 
 let storage = new MongoStorage(process.env.MONGO_URL)
-let sub = new RedisChannel(process.env.REDIS_URL)
-let pub = new RedisChannel(process.env.REDIS_URL, true)
+let pubsub = new RedisPubsub(process.env.REDIS_URL)
 
-let store = new Store(storage, sub, pub, options)
+let store = new Store(storage, pubsub, options)
 
 store.init = () => Promise.all([
   storage.init(),
-  sub.init(),
-  pub.init()
+  pubsub.init()
 ])
 
 export default store
