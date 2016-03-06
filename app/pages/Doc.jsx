@@ -38,8 +38,8 @@ class Doc extends React.Component {
       <Layout fixedHeader={true}>
         <Header />
         <Content>
-          Doc {name}
-          <input onChange={this.set.bind(this)} value={name} />
+          <p>Doc {name}</p>
+          <textarea className='input' onChange={this.set.bind(this)} value={name} />
         </Content>
       </Layout>
     )
