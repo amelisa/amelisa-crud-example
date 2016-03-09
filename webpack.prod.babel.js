@@ -1,3 +1,4 @@
+import path from 'path'
 import webpack from 'webpack'
 
 module.exports = {
@@ -37,7 +38,12 @@ module.exports = {
     root: __dirname + '/node_modules'
   },
   resolve: {
-    extensions: ['', '.json', '.js', '.jsx']
+    extensions: ['', '.json', '.js', '.jsx'],
+    fallback: [path.join(__dirname, 'node_modules')],
+    alias: {
+      react: path.resolve('./node_modules/react'),
+      'react-dom': path.resolve('./node_modules/react-dom')
+    }
   },
   node: {
     __dirname: true,
