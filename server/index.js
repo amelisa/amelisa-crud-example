@@ -1,6 +1,5 @@
 import '../config'
 import http from 'http'
-import { ServerSocketChannel } from 'amelisa/server'
 import { Server as WebSocketServer } from 'ws'
 import app from './app'
 import store from './store'
@@ -17,10 +16,7 @@ async function init () {
 
   let wsServer = new WebSocketServer({server})
 
-  wsServer.on('connection', (socket) => {
-    let channel = new ServerSocketChannel(socket, socket.upgradeReq)
-    store.onChannel(channel)
-  })
+  wsServer.on('connection', store.onConnection)
 
   server.listen(port, (err) => {
     if (err) {
