@@ -31,9 +31,4 @@ let pubsub = new RedisPubsub(process.env.REDIS_URL)
 
 let store = new Store(storage, pubsub, options)
 
-store.init = () => Promise.all([
-  storage.init(),
-  pubsub.init()
-])
-
 export default store
