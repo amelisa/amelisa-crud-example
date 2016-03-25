@@ -1,4 +1,6 @@
-import { MongoStorage, RedisPubsub, Store } from 'amelisa/server'
+import { MongoStorage } from 'amelisa/mongo'
+import { RedisPubsub } from 'amelisa/redis'
+import { Store } from 'amelisa/server'
 
 const options = {
   version: 1,
