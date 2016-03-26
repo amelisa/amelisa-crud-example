@@ -4,6 +4,7 @@ import { Router } from 'react-router'
 import Routes from './Routes'
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import injectTapEventPlugin from 'react-tap-event-plugin'
+import { dbQueries } from 'amelisa/mongo'
 import { getModel } from 'amelisa/react'
 
 // require('events').EventEmitter.prototype._maxListeners = 100
@@ -14,7 +15,7 @@ import { getModel } from 'amelisa/react'
 // https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin()
 
-let model = getModel()
+let model = getModel({dbQueries})
 
 function onUpdate () {
   window.scrollTo(0, 0)

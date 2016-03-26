@@ -1,9 +1,14 @@
-import { MongoStorage } from 'amelisa/mongo'
+import { MongoStorage } from 'amelisa/mongo-server'
 import { RedisPubsub } from 'amelisa/redis'
 import { Store } from 'amelisa/server'
 
+let storage = new MongoStorage(process.env.MONGO_URL)
+let pubsub = new RedisPubsub(process.env.REDIS_URL)
+
 const options = {
   version: 1,
+  storage,
+  pubsub,
   collections: {
     auths: {
       client: false
@@ -28,9 +33,6 @@ const options = {
   clientStorage: true
 }
 
-let storage = new MongoStorage(process.env.MONGO_URL)
-let pubsub = new RedisPubsub(process.env.REDIS_URL)
-
-let store = new Store(storage, pubsub, options)
+let store = new Store(options)
 
 export default store
