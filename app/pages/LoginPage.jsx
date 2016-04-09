@@ -1,20 +1,20 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Login, Logout, Register } from '../../auth/components'
 import { Layout, Content } from 'react-mdl'
 import { createContainer } from 'amelisa/react'
 import { Header } from '../components/layout'
 
-class LoginPage extends React.Component {
+class LoginPage extends Component {
 
   static contextTypes = {
-    model: React.PropTypes.object
+    model: PropTypes.object
   };
 
   static propTypes = {
     loggedIn: PropTypes.bool
   };
 
-  getQueries () {
+  subscribe () {
     return {
       loggedIn: ['_session', 'loggedIn']
     }

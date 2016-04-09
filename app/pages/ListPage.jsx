@@ -1,13 +1,13 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { createContainer } from 'amelisa/react'
 import { Layout, Content, Card } from 'react-mdl'
 import { Header } from '../components/layout'
 
-class List extends React.Component {
+class ListPage extends Component {
 
   static contextTypes = {
-    model: React.PropTypes.object
+    model: PropTypes.object
   };
 
   static propTypes = {
@@ -19,7 +19,7 @@ class List extends React.Component {
     setQueries: PropTypes.func
   };
 
-  getQueries () {
+  subscribe () {
     let { page = 1 } = this.props.location.query
 
     return {
@@ -31,8 +31,6 @@ class List extends React.Component {
 
   render () {
     let { items, itemsCount, userId } = this.props
-
-    if (!items) return <div>empty items</div>
 
     return (
       <Layout fixedHeader={true}>
@@ -52,7 +50,7 @@ class List extends React.Component {
                 )
             })
           }
-          <button onClick={this.add.bind(this)}>add</button>
+          <button onClick={this.add}>add</button>
           <Link to='list' query={{page: 1}}>Page 1</Link>
           <Link to='list' query={{page: 2}}>Page 2</Link>
         </Content>
@@ -60,31 +58,37 @@ class List extends React.Component {
     )
   }
 
-  add () {
-    let itemId = this.context.model.id()
-    this.context.model
-      .add('items', {_id: itemId, name: 'item ' + itemId})
+  add = () => {
+    let { model } = this.context
+
+    let itemId = model.id()
+    model
+      .add('items', {_id: itemId, name: `item ${itemId}`})
       .catch((err) => {
         console.error('add error', err)
       })
-  }
+  };
 
-  set (itemId, event) {
+  set = (itemId, event) => {
+    let { model } = this.context
     let value = event.nativeEvent.target.value
-    this.context.model
+
+    model
       .set(['items', itemId, 'name'], value)
       .catch((err) => {
         console.error('set error', err)
       })
-  }
+  };
 
-  del (itemId) {
-    this.context.model
+  del = (itemId) => {
+    let { model } = this.context
+
+    model
       .del(['items', itemId])
       .catch((err) => {
         console.error('del error', err)
       })
-  }
+  };
 }
 
-export default createContainer(List, React)
+export default createContainer(ListPage)

@@ -1,12 +1,13 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { createContainer, Input } from 'amelisa/react'
 import { Layout, Content } from 'react-mdl'
 import { Header } from '../components/layout'
-import DraftEditor from '../components/editor/DraftEditor'
+// import DraftEditor from '../components/editor/DraftEditor'
 
-class Doc extends React.Component {
+class DocPage extends Component {
+
   static contextTypes = {
-    model: React.PropTypes.object
+    model: PropTypes.object
   };
 
   static propTypes = {
@@ -15,23 +16,12 @@ class Doc extends React.Component {
     user: PropTypes.object
   };
 
-  // shouldComponentUpdate (nextProps) {
-  //   return nextProps.doc.name !== this.props.doc.name
-  // }
-
-  getQueries () {
+  subscribe () {
     let { collectionName, docId } = this.props.params
 
     return {
       doc: [collectionName, docId]
     }
-  }
-
-  set (event) {
-    let { collectionName, docId } = this.props.params
-    let { value } = event.nativeEvent.target
-    console.log('set', collectionName, docId, value)
-    this.context.model.set([collectionName, docId, 'name'], value)
   }
 
   render () {
@@ -47,24 +37,31 @@ class Doc extends React.Component {
             {name}
           </p>
           <p>
-            <input onChange={this.set.bind(this)} value={name} />
+            <input onChange={this.onInputChange} value={name} />
           </p>
           <p>
             <Input className='input' collectionName={collectionName} docId={docId} field='description' />
           </p>
-          {/* <DraftEditor value={doc.longDescription} onChange={this.onChange} />*/}
+          {/* <DraftEditor value={doc.longDescription} onChange={this.onRichChange} />*/}
         </Content>
       </Layout>
     )
   }
 
-  onChange = (value) => {
+  onInputChange = (event) => {
     let { collectionName, docId } = this.props.params
-    console.log('onChange', value, value.map((block) => {
-      return block.key + ' - ' + block.text
-    }))
-    this.context.model.richDiff([collectionName, docId, 'longDescription'], value)
+    let { model } = this.context
+    let { value } = event.nativeEvent.target
+
+    model.set([collectionName, docId, 'name'], value)
+  };
+
+  onRichChange = (value) => {
+    let { collectionName, docId } = this.props.params
+    let { model } = this.context
+
+    model.richDiff([collectionName, docId, 'longDescription'], value)
   };
 }
 
-export default createContainer(Doc, React)
+export default createContainer(DocPage)

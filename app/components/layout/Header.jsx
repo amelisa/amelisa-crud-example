@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { createContainer } from 'amelisa/react'
-import { Header as MdlHeader, HeaderRow, Icon, Navigation, Spacer } from 'react-mdl'
+import { Header as MdlHeader, HeaderRow, Icon, Navigation, Spacer }
+  from 'react-mdl'
 
-class Header extends React.Component {
+class Header extends Component {
 
   static contextTypes = {
     model: PropTypes.object
@@ -15,8 +16,9 @@ class Header extends React.Component {
     loggedIn: PropTypes.bool
   };
 
-  getQueries () {
-    let { userId } = this.context.model.get('_session')
+  subscribe () {
+    let { model } = this.context
+    let userId = model.get('_session.userId')
 
     return {
       user: ['users', userId],
@@ -47,4 +49,4 @@ class Header extends React.Component {
   }
 }
 
-export default createContainer(Header, React)
+export default createContainer(Header)

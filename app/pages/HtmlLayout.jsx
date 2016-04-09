@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 
-class HtmlLayout extends React.Component {
+class HtmlLayout extends Component {
 
   static propTypes = {
     children: PropTypes.any,

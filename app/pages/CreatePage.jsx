@@ -1,24 +1,17 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Layout, Content, Button, Textfield } from 'react-mdl'
 import { Header } from '../components/layout'
-import { createContainer } from 'amelisa/react'
 
-class Create extends React.Component {
+class CreatePage extends Component {
 
   static contextTypes = {
-    model: React.PropTypes.object.isRequired,
-    history: React.PropTypes.object.isRequired
+    model: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
   };
 
   static propTypes = {
     userId: PropTypes.string
   };
-
-  getQueries () {
-    return {
-      userId: '_session.userId'
-    }
-  }
 
   render () {
     return (
@@ -34,9 +27,11 @@ class Create extends React.Component {
   }
 
   create = () => {
-    let { userId } = this.props
+    let { history, model } = this.context
+
+    let userId = model.get('_session.userId')
     let name = this.refs.name.refs.input.value
-    let itemId = this.context.model.id()
+    let itemId = model.id()
 
     let item = {
       _id: itemId,
@@ -44,10 +39,10 @@ class Create extends React.Component {
       userId
     }
 
-    this.context.model
+    model
       .add('items', item)
       .then(() => {
-        this.context.history.push('/items/' + itemId)
+        history.push('/items/' + itemId)
       })
       .catch((err) => {
         window.alert(err)
@@ -55,4 +50,4 @@ class Create extends React.Component {
   };
 }
 
-export default createContainer(Create, React)
+export default CreatePage
