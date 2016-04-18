@@ -1,7 +1,15 @@
-import React from 'react'
-import superagent from 'superagent'
+import { Component } from 'react'
 
-class Base extends React.Component {
+const options = {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest'
+  },
+  credentials: 'include'
+}
+
+class Base extends Component {
 
   constructor () {
     super()
@@ -13,18 +21,16 @@ class Base extends React.Component {
   send (data, path) {
     this.setState({sending: true})
 
-    superagent
-      .post(path)
-      .send(data)
-      .set('Content-Type', 'application/json')
-      .set('X-Requested-With', 'XMLHttpRequest')
-      .end((err, res) => {
-        console.log(err, res.body)
+    window.fetch(path, {...options, body: JSON.stringify(data)})
+      .then((res) => {
+        if (res.status !== 200) throw new Error(`Internal Error`)
+
+        return res.json()
+      })
+      .then((data) => {
+        let { info, success } = data
+
         this.setState({sending: false})
-
-        if (err) return this.setState({error: 'Connection error, please try again'})
-
-        let { info, success } = res.body
 
         if (success) window.location.reload()
 
