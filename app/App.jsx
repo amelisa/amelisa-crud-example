@@ -5,7 +5,7 @@ import Routes from './Routes'
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import { dbQueries } from 'amelisa/mongo'
-import { getModel } from 'amelisa/react'
+import { getModel } from 'amelisa'
 
 // require('events').EventEmitter.prototype._maxListeners = 100
 

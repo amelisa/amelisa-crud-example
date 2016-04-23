@@ -1,6 +1,6 @@
 import { MongoStorage } from 'amelisa/mongo-server'
 import { RedisPubsub } from 'amelisa/redis'
-import { Store } from 'amelisa/server'
+import { Store } from 'amelisa'
 
 let storage = new MongoStorage(process.env.MONGO_URL)
 let pubsub = new RedisPubsub(process.env.REDIS_URL)
