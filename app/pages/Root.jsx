@@ -12,6 +12,7 @@ class Root extends RootComponent {
   render () {
     let { children } = this.props
 
+    // server rendering is disabled intentionally, because it's not finished
     if (isServer) return <Loading />
 
     return children

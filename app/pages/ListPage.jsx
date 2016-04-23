@@ -6,10 +6,6 @@ import { Header } from '../components/layout'
 
 class ListPage extends Component {
 
-  state = {
-    showAll: false
-  };
-
   static contextTypes = {
     model: PropTypes.object
   };
@@ -24,10 +20,16 @@ class ListPage extends Component {
     resubscribe: PropTypes.func
   };
 
+  state = {
+    showAll: false
+  };
+
   subscribe () {
     let { page = 1 } = this.props.location.query
     let { showAll } = this.state
 
+    // here component subscribes to data
+    // data will be in corresponding keys in props
     return {
       items: ['items', showAll ? {} : {$skip: ((page - 1) * 5), $limit: 5, $orderby: {name: 1}}],
       itemsCount: ['items', {$count: true}],
@@ -36,6 +38,7 @@ class ListPage extends Component {
   }
 
   render () {
+    // every time data changes, component rerenders
     let { items, itemsCount, userId } = this.props
 
     return (

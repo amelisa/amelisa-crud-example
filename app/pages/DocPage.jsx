@@ -40,6 +40,7 @@ class DocPage extends Component {
             <input onChange={this.onInputChange} value={name} />
           </p>
           <p>
+            {/* Input component handles cursor selection while colloborative editing */}
             <Input className='input' collectionName={collectionName} docId={docId} field='description' />
           </p>
           {/* <DraftEditor value={doc.longDescription} onChange={this.onRichChange} />*/}
