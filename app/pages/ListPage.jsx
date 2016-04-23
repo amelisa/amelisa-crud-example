@@ -6,6 +6,10 @@ import { Header } from '../components/layout'
 
 class ListPage extends Component {
 
+  state = {
+    showAll: false
+  };
+
   static contextTypes = {
     model: PropTypes.object
   };
@@ -16,14 +20,16 @@ class ListPage extends Component {
     itemsCount: PropTypes.number,
     user: PropTypes.object,
     userId: PropTypes.string,
-    setQueries: PropTypes.func
+    setQueries: PropTypes.func,
+    resubscribe: PropTypes.func
   };
 
   subscribe () {
     let { page = 1 } = this.props.location.query
+    let { showAll } = this.state
 
     return {
-      items: ['items', {$skip: ((page - 1) * 5), $limit: 5, $orderby: {name: 1}}],
+      items: ['items', showAll ? {} : {$skip: ((page - 1) * 5), $limit: 5, $orderby: {name: 1}}],
       itemsCount: ['items', {$count: true}],
       userId: ['_session', 'userId']
     }
@@ -51,12 +57,34 @@ class ListPage extends Component {
             })
           }
           <button onClick={this.add}>add</button>
+          <button onClick={this.onShowAll}>Show All</button>
+          <button onClick={this.onShowAll2}>Show All2</button>
           <Link to='list' query={{page: 1}}>Page 1</Link>
           <Link to='list' query={{page: 2}}>Page 2</Link>
         </Content>
       </Layout>
     )
   }
+
+  onShowAll = () => {
+    let { resubscribe } = this.props
+
+    // It's possible to change subscriptions from component itself
+    resubscribe({
+      items: ['items', {}],
+      itemsCount: ['items', {$count: true}],
+      userId: ['_session', 'userId']
+    })
+  };
+
+  onShowAll2 = () => {
+    let { resubscribe } = this.props
+
+    // If subscribe data is not passed to resubscribe as parameter,
+    // it runs subscribe one more time to get it
+    // It's possible to use state here for our needs
+    this.setState({showAll: true}, resubscribe)
+  };
 
   add = () => {
     let { model } = this.context
