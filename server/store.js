@@ -29,8 +29,7 @@ const options = {
         name: true
       }
     }
-  },
-  clientStorage: true
+  }
 }
 
 let store = new Store(options)
