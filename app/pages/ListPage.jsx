@@ -50,10 +50,10 @@ class ListPage extends Component {
             items.map(item => {
               let isMe = item.userId === userId
               return (
-                <Card key={item._id} className='item' shadowLevel={2}>
-                  <Link to={`/items/${item._id}`}>{item.name || 'no name'}</Link>
-                  <input onChange={this.set.bind(this, item._id)} value={item.name} />
-                  <button onClick={this.del.bind(this, item._id)}>Delete</button>
+                <Card key={item.id} className='item' shadowLevel={2}>
+                  <Link to={`/items/${item.id}`}>{item.name || 'no name'}</Link>
+                  <input onChange={this.set.bind(this, item.id)} value={item.name} />
+                  <button onClick={this.del.bind(this, item.id)}>Delete</button>
                   {isMe && 'me'}
                 </Card>
                 )
@@ -94,7 +94,7 @@ class ListPage extends Component {
 
     let itemId = model.id()
     model
-      .add('items', {_id: itemId, name: `item ${itemId}`})
+      .add('items', {id: itemId, name: `item ${itemId}`})
       .catch((err) => {
         console.error('add error', err)
       })

@@ -30,7 +30,7 @@ class DocPage extends Component {
     let name = doc ? doc.name : 'no name'
 
     return (
-      <Layout fixedHeader={true}>
+      <Layout fixedHeader>
         <Header />
         <Content>
           <p>

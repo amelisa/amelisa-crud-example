@@ -34,7 +34,7 @@ class CreatePage extends Component {
     let itemId = model.id()
 
     let item = {
-      _id: itemId,
+      id: itemId,
       name,
       userId
     }

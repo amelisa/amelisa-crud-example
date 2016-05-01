@@ -24,7 +24,7 @@ const options = {
     users: {
       collectionName: 'auths',
       fields: {
-        _id: true,
+        id: true,
         email: true,
         name: true
       }

@@ -16,9 +16,11 @@ import { getModel, IndexedDbStorage } from 'amelisa'
 injectTapEventPlugin()
 
 let model = getModel({
-  dbQueries,
+  modelOptions: {dbQueries},
   Storage: IndexedDbStorage
 })
+
+window.model = model
 
 function onUpdate () {
   window.scrollTo(0, 0)
