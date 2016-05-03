@@ -11,7 +11,7 @@
     "dev-styles": "gulp",
     "prod-server": "NODE_ENV=production node server.js",
     "build": "gulp build && webpack --progress --config webpack.prod.babel.js",
-    "analyze": "webpack --progress --config webpack.prod.babel.js --json | analyze-bundle-size"
+    "analyze": "webpack --progress --config webpack.prod.babel.js --json | webpack-bundle-size-analyzer"
   },
   "author": "",
   "license": "MIT",
