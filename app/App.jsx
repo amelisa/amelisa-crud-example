@@ -2,9 +2,11 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Router } from 'react-router'
 import Routes from './Routes'
+import Loading from '../components/Loading'
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import injectTapEventPlugin from 'react-tap-event-plugin'
-import { dbQueries } from 'amelisa/mongo'
+import { dbQueries } from 'amelisa-mongo'
+import { setLoading } from 'react-amelisa'
 import { getModel, IndexedDbStorage } from 'amelisa'
 
 // require('events').EventEmitter.prototype._maxListeners = 100
@@ -14,6 +16,8 @@ import { getModel, IndexedDbStorage } from 'amelisa'
 // Check this repo:
 // https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin()
+
+setLoading(Loading)
 
 let model = getModel({
   modelOptions: {dbQueries},

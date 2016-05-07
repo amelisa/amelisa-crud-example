@@ -1,7 +1,7 @@
 import express from 'express'
 import React from 'react'
 import session from 'express-session'
-import { createElement, renderToStaticMarkup } from 'amelisa/react-server'
+import { createElement, renderToStaticMarkup } from 'react-amelisa/server'
 import auth from 'amelisa-auth'
 import bodyParser from 'body-parser'
 let MongoStore = require('connect-mongo')(session)

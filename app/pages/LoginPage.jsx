@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Login, Logout, Register } from '../../auth/components'
 import { Layout, Content } from 'react-mdl'
-import { createContainer } from 'amelisa/react'
+import { createContainer } from 'react-amelisa'
 import { Header } from '../components/layout'
 
 class LoginPage extends Component {

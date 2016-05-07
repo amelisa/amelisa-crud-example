@@ -42,7 +42,8 @@ module.exports = {
     fallback: [path.join(__dirname, 'node_modules')],
     alias: {
       react: path.resolve('./node_modules/react'),
-      'react-dom': path.resolve('./node_modules/react-dom')
+      'react-dom': path.resolve('./node_modules/react-dom'),
+      graphql: path.resolve('./node_modules/react') // hack to ignore graphql
     }
   },
   node: {

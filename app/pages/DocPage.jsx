@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { createContainer, Input } from 'amelisa/react'
+import { createContainer, Input } from 'react-amelisa'
 import { Layout, Content } from 'react-mdl'
 import { Header } from '../components/layout'
 // import DraftEditor from '../components/editor/DraftEditor'
