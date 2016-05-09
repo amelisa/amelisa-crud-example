@@ -5,9 +5,7 @@ config.cache = true
 // config.debug = true
 // config.devtool = 'eval'
 
-config.entry.unshift(
-  'webpack-hot-middleware/client'
-)
+config.entry.webpack = 'webpack-hot-middleware/client'
 
 config.plugins = [
   new webpack.optimize.OccurenceOrderPlugin(),

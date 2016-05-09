@@ -7,7 +7,7 @@ class DraftEditor extends Component {
 
   static contextTypes = {
     model: PropTypes.object
-  };
+  }
 
   static propTypes = {
     collectionName: PropTypes.string,
@@ -15,9 +15,9 @@ class DraftEditor extends Component {
     field: PropTypes.string,
     value: PropTypes.any,
     onChange: PropTypes.func
-  };
+  }
 
-  state = {};
+  state = {}
 
   render () {
     let editorState = this.getEditorState()
@@ -82,13 +82,13 @@ class DraftEditor extends Component {
     })
 
     if (onChange) onChange(blocks)
-  };
+  }
 
   toggleInlineStyle = (inlineStyle) => {
     let editorState = this.getEditorState()
     editorState = RichUtils.toggleInlineStyle(editorState, inlineStyle)
     this.onChange(editorState)
-  };
+  }
 }
 
 export default DraftEditor

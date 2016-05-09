@@ -1,6 +1,31 @@
 {
   "NODE_ENV": "development",
   "PORT": 3000,
+  "BASE_URL": "http://localhost:3000",
   "MONGO_URL": "mongodb://localhost:27017/amelisa-crud-example",
-  "REDIS_URL": "redis://localhost:6379/1"
+  "REDIS_URL": "redis://localhost:6379/1",
+
+  "FACEBOOK_KEY": "1630149650631217",
+  "FACEBOOK_SECRET": "832f4f2cdd2a227b04a2f4fe8c7b628a",
+  "FACEBOOK_URL": "https://www.facebook.com/v2.6/dialog/oauth",
+  "FACEBOOK_FIELDS": [
+    "id",
+    "about",
+    "birthday",
+    "emails",
+    "first_name",
+    "gender",
+    "hometown",
+    "languages",
+    "last_name",
+    "link",
+    "location",
+    "locale",
+    "middle_name",
+    "picture.type(large)"
+  ],
+  "FACEBOOK_SCOPE": [
+    "email",
+    "public_profile"
+  ]
 }

@@ -1,14 +1,17 @@
 import React, { Component, PropTypes } from 'react'
-import { Link } from 'react-router'
 import { createContainer } from 'react-amelisa'
-import { Layout, Content, Card } from 'react-mdl'
-import { Header } from '../components/layout'
+import { Button, Card, CardTitle, CardText, CardActions } from 'react-mdl'
+import { Link } from 'react-router'
+import { Content, Header, Layout } from '../../components/layout'
+import { Item } from '../components/item'
+
+const itemsOnPage = 5
 
 class ListPage extends Component {
 
   static contextTypes = {
     model: PropTypes.object
-  };
+  }
 
   static propTypes = {
     location: PropTypes.object,
@@ -18,52 +21,66 @@ class ListPage extends Component {
     userId: PropTypes.string,
     setQueries: PropTypes.func,
     resubscribe: PropTypes.func
-  };
+  }
 
   state = {
     showAll: false
-  };
+  }
 
   subscribe () {
     let { page = 1 } = this.props.location.query
     let { showAll } = this.state
+    let { model } = this.context
+    let userId = model.get('_session.userId')
 
     // here component subscribes to data
     // data will be in corresponding keys in props
     return {
-      items: ['items', showAll ? {} : {$skip: ((page - 1) * 5), $limit: 5, $orderby: {name: 1}}],
-      itemsCount: ['items', {$count: true}],
+      items: ['items', showAll ? {userId} : {
+        userId,
+        $skip: ((page - 1) * itemsOnPage),
+        $limit: itemsOnPage,
+        $orderby: {name: 1}}
+      ],
+      itemsCount: ['items', {userId, $count: true}],
       userId: ['_session', 'userId']
     }
   }
 
   render () {
     // every time data changes, component rerenders
-    let { items, itemsCount, userId } = this.props
+    let { page = 1 } = this.props.location.query
+    let { items, itemsCount } = this.props
+    page = +page
+
+    let pagesCount = Math.ceil(itemsCount / Math.max(itemsOnPage, items.length))
+    if (page > pagesCount) page = pagesCount
+    let prevPage = page === 1 ? null : page - 1
+    let nextPage = page === pagesCount ? null : page + 1
 
     return (
-      <Layout fixedHeader={true}>
+      <Layout>
         <Header />
         <Content>
-          List ({items.length} from {itemsCount})
-          {
-            items.map(item => {
-              let isMe = item.userId === userId
-              return (
-                <Card key={item.id} className='item' shadowLevel={2}>
-                  <Link to={`/items/${item.id}`}>{item.name || 'no name'}</Link>
-                  <input onChange={this.set.bind(this, item.id)} value={item.name} />
-                  <button onClick={this.del.bind(this, item.id)}>Delete</button>
-                  {isMe && 'me'}
-                </Card>
-                )
-            })
-          }
-          <button onClick={this.add}>add</button>
-          <button onClick={this.onShowAll}>Show All</button>
-          <button onClick={this.onShowAll2}>Show All2</button>
-          <Link to='list' query={{page: 1}}>Page 1</Link>
-          <Link to='list' query={{page: 2}}>Page 2</Link>
+          <Card style={styles.listMenu} shadow={1}>
+            <CardTitle style={styles.listTitle}>
+              {items.length} of {itemsCount} items shown on page {page} of {pagesCount}
+            </CardTitle>
+            <CardText style={styles.listText}>
+              <span style={styles.pageLink}>
+                {prevPage ? <Link to={{query: {page: prevPage}}}>Prev</Link> : 'Prev'}
+              </span>
+              <span style={styles.pageLink}>
+                {nextPage ? <Link to={{query: {page: nextPage}}}>Next</Link> : 'Next'}
+              </span>
+            </CardText>
+            <CardActions border>
+              <Button onClick={this.onAdd}>Add</Button>
+              <Button onClick={this.onShowAll}>Show All</Button>
+              <Button onClick={this.onShowAll2}>Show All2</Button>
+            </CardActions>
+          </Card>
+          {items.map((item) => <Item key={item.id} item={item} />)}
         </Content>
       </Layout>
     )
@@ -78,7 +95,7 @@ class ListPage extends Component {
       itemsCount: ['items', {$count: true}],
       userId: ['_session', 'userId']
     })
-  };
+  }
 
   onShowAll2 = () => {
     let { resubscribe } = this.props
@@ -87,39 +104,31 @@ class ListPage extends Component {
     // it runs subscribe one more time to get it
     // It's possible to use state here for our needs
     this.setState({showAll: true}, resubscribe)
-  };
+  }
 
-  add = () => {
+  onAdd = () => {
     let { model } = this.context
 
-    let itemId = model.id()
-    model
-      .add('items', {id: itemId, name: `item ${itemId}`})
-      .catch((err) => {
-        console.error('add error', err)
-      })
-  };
+    let userId = model.get('_session.userId')
+    let name = Math.random().toString(36).substring(2, 7)
+    let description = Math.random().toString(36).substring(2)
+    model.add('items', {name, description, userId})
+  }
+}
 
-  set = (itemId, event) => {
-    let { model } = this.context
-    let value = event.nativeEvent.target.value
-
-    model
-      .set(['items', itemId, 'name'], value)
-      .catch((err) => {
-        console.error('set error', err)
-      })
-  };
-
-  del = (itemId) => {
-    let { model } = this.context
-
-    model
-      .del(['items', itemId])
-      .catch((err) => {
-        console.error('del error', err)
-      })
-  };
+const styles = {
+  listMenu: {
+    minHeight: 150,
+    marginBottom: 20
+  },
+  listTitle: {
+  },
+  listText: {
+    flexDirection: 'column'
+  },
+  pageLink: {
+    marginRight: 10
+  }
 }
 
 export default createContainer(ListPage)

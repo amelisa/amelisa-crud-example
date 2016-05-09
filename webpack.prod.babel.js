@@ -6,10 +6,14 @@ module.exports = {
   cache: false,
   context: __dirname,
   devtool: false,
-  entry: ['./app'],
+  entry: {
+    // admin: './admin',
+    app: './app',
+    promo: './promo'
+  },
   output: {
     path: __dirname + '/public/js',
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     chunkFilename: '[name].[id].js',
     publicPath: '/js/'
   },
@@ -33,6 +37,9 @@ module.exports = {
       {include: /\.jsx$/, loaders: ['react-hot', 'babel', 'react-prefix'], exclude: /(node_modules)/},
       {include: /\.css$/, loaders: ['style', 'css']}
     ]
+  },
+  reactPrefixLoader: {
+    ignore: /^mdl-/
   },
   resolveLoader: {
     root: __dirname + '/node_modules'

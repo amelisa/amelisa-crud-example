@@ -1,40 +1,42 @@
 import React, { Component, PropTypes } from 'react'
-import { Layout, Content, Button, Textfield } from 'react-mdl'
-import { Header } from '../components/layout'
+import { Button, Card, CardTitle, CardText, CardActions, Textfield } from 'react-mdl'
+import { Content, Header, Layout } from '../../components/layout'
 
 class CreatePage extends Component {
 
   static contextTypes = {
-    model: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
-  };
-
-  static propTypes = {
-    userId: PropTypes.string
-  };
+    model: PropTypes.object,
+    router: PropTypes.any
+  }
 
   render () {
     return (
-      <Layout fixedHeader={true}>
+      <Layout>
         <Header />
         <Content>
-          Create
-          <Textfield label='Name' ref='name' />
-          <Button onClick={this.create}>Create</Button>
+          <Card shadow={1}>
+            <CardTitle>Create</CardTitle>
+            <CardText>
+              <Textfield floatingLabel label='Name' ref='name' />
+            </CardText>
+            <CardActions border>
+              <Button onClick={this.onCreate}>Create</Button>
+            </CardActions>
+          </Card>
         </Content>
       </Layout>
     )
   }
 
-  create = () => {
-    let { history, model } = this.context
+  onCreate = () => {
+    let { model, router } = this.context
 
     let userId = model.get('_session.userId')
     let name = this.refs.name.refs.input.value
-    let itemId = model.id()
+    let id = model.id()
 
     let item = {
-      id: itemId,
+      id,
       name,
       userId
     }
@@ -42,12 +44,12 @@ class CreatePage extends Component {
     model
       .add('items', item)
       .then(() => {
-        history.push('/items/' + itemId)
+        router.push(`/items/${id}`)
       })
       .catch((err) => {
         window.alert(err)
       })
-  };
+  }
 }
 
 export default CreatePage

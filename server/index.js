@@ -1,7 +1,6 @@
 import '../config'
 import http from 'http'
 import { Server as WebSocketServer } from 'ws'
-import app from './app'
 import store from './store'
 import './hooks'
 
@@ -11,6 +10,8 @@ async function init () {
   await store.init()
 
   let server = http.createServer()
+
+  let app = require('./app')
 
   server.on('request', app)
 

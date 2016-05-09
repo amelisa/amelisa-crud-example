@@ -3,7 +3,7 @@ const options = {
     userProperty: 'userId'
   },
   strategies: {
-    /* facebook: {
+    facebook: {
       strategy: require('passport-facebook').Strategy,
       conf: {
         clientID: process.env.FACEBOOK_KEY,
@@ -13,7 +13,7 @@ const options = {
         profileFields: process.env.FACEBOOK_FIELDS.split(','),
         scope: process.env.FACEBOOK_SCOPE.split(',')
       }
-    }*/
+    }
   }
 }
 

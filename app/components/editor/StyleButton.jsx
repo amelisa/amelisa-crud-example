@@ -7,7 +7,7 @@ class StyleButton extends Component {
     label: PropTypes.string,
     onToggle: PropTypes.func,
     style: PropTypes.any
-  };
+  }
 
   render () {
     let { active, label } = this.props
@@ -29,7 +29,7 @@ class StyleButton extends Component {
 
     e.preventDefault()
     onToggle(style)
-  };
+  }
 }
 
 export default StyleButton

@@ -26,7 +26,8 @@ const options = {
       fields: {
         id: true,
         email: true,
-        name: true
+        name: true,
+        dateCreated: true
       }
     }
   }
