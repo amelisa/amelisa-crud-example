@@ -33,6 +33,9 @@ function createSchema (resolve) {
       name: {
         type: GraphQLString
       },
+      email: {
+        type: GraphQLString
+      },
       items: {
         type: new GraphQLList(Item),
         resolve (parent, args) {
@@ -54,6 +57,12 @@ function createSchema (resolve) {
         resolve: (parent, args) => {
           let { id } = args
           return resolve('users', id)
+        }
+      },
+      users: {
+        type: new GraphQLList(User),
+        resolve: (parent, args) => {
+          return resolve('users', {})
         }
       },
       item: {

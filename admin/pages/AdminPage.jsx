@@ -10,18 +10,17 @@ class AdminPage extends Component {
   }
 
   static propTypes = {
-    user: PropTypes.object
+    users: PropTypes.array
   }
 
   render () {
-    let { user } = this.props
-    console.log('user', user)
+    let { users } = this.props
 
     return (
       <Layout>
         <Header transparent title='Amelisa CRUD Example (Admin)' />
         <Content>
-          {/*{users.map((user) => <div>{user.email}</div>)}*/}
+          {users.map((user) => <div>{user.email}</div>)}
         </Content>
       </Layout>
     )
@@ -32,12 +31,11 @@ const styles = {}
 
 export default createContainer(AdminPage, {
     fragments: {
-      user: () => Relay.QL`
-        fragment on User {
-          items {
-            id,
-            name
-          }
+      users: () => Relay.QL`
+        fragment on User @relay(plural: true) {
+          id,
+          name,
+          email
         }
       `
     }
