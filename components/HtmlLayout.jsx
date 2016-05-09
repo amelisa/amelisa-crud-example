@@ -27,7 +27,7 @@ class HtmlLayout extends Component {
           {style}
         </head>
         <body>
-          <div id='app'>{children}</div>
+          <div id='root'>{children}</div>
           <script defer src='/extra/material.min.js' />
           <script defer src={`/js/${app}.bundle.js`} />
           <script type='application/json' id='bundle' dangerouslySetInnerHTML={{__html: json}}></script>

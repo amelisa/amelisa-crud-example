@@ -10,6 +10,7 @@ import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackConfig from '../webpack.dev.babel'
+// import adminRoutes from '../admin/Routes'
 import appRoutes from '../app/Routes'
 import promoRoutes from '../promo/Routes'
 import store from './store'
@@ -18,6 +19,7 @@ import HtmlLayout from '../components/HtmlLayout'
 
 const appsRoutes = {
   app: appRoutes,
+  // admin: adminRoutes,
   promo: promoRoutes
 }
 
@@ -52,9 +54,16 @@ app.use(wrap(async (req, res, next) => {
     return res.redirect('/login')
   }
 
-  // if (loggedIn && req.path.indexOf('/login') > -1) {
-  //   return res.redirect('/')
-  // }
+  if (loggedIn && req.path.indexOf('/login') > -1) {
+    return res.redirect('/')
+  }
+
+  if (loggedIn && req.path.indexOf('/admin') > -1) {
+    let model = req.getModel()
+    model.prepareBundle()
+    let html = await renderToStaticMarkup(HtmlLayout, {model, app: 'admin'})
+    return res.status(200).send(html)
+  }
 
   next()
 }))

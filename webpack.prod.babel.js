@@ -7,7 +7,7 @@ module.exports = {
   context: __dirname,
   devtool: false,
   entry: {
-    // admin: './admin',
+    admin: './admin',
     app: './app',
     promo: './promo'
   },
@@ -49,8 +49,7 @@ module.exports = {
     fallback: [path.join(__dirname, 'node_modules')],
     alias: {
       react: path.resolve('./node_modules/react'),
-      'react-dom': path.resolve('./node_modules/react-dom'),
-      graphql: path.resolve('./node_modules/react') // hack to ignore graphql
+      'react-dom': path.resolve('./node_modules/react-dom')
     }
   },
   node: {

@@ -1,11 +1,11 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Router, browserHistory } from 'react-router'
+import { setLoading } from 'react-amelisa'
+import { dbQueries } from 'amelisa-mongo'
+import { getModel, IndexedDbStorage } from 'amelisa'
 import Routes from './Routes'
 import Loading from '../components/Loading'
-import { dbQueries } from 'amelisa-mongo'
-import { setLoading } from 'react-amelisa'
-import { getModel, IndexedDbStorage } from 'amelisa'
 
 // set default loading page
 setLoading(Loading)
@@ -35,5 +35,5 @@ model.on('ready', () => {
     <Router history={browserHistory} onUpdate={onUpdate} createElement={createElement}>
       {Routes}
     </Router>
-  , document.getElementById('app'))
+  , document.getElementById('root'))
 })

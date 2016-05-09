@@ -5,7 +5,7 @@ import postcss from 'gulp-postcss'
 import autoprefixer from 'autoprefixer'
 import postcssFilenamePrefix from 'postcss-filename-prefix'
 
-const apps = ['app', 'promo']
+const apps = ['admin', 'app', 'promo']
 const processors = [autoprefixer, postcssFilenamePrefix]
 
 function css () {

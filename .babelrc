@@ -5,6 +5,7 @@
     "react"
   ],
   "plugins": [
+    "./build/babelRelayPlugin",
     "add-module-exports",
     "transform-runtime"
   ]

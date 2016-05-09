@@ -38,11 +38,10 @@ class LoginPage extends Component {
 
     return (
       <Layout style={styles.layout}>
-        <Header transparent style={styles.header} title='Amelisa CRUD Example' />
+        <Header transparent title='Amelisa CRUD Example' />
         <Content>
           <h1 style={styles.label}>Welcome, developer!</h1>
           {content}
-          <div style={styles.space} />
         </Content>
       </Layout>
     )
@@ -63,4 +62,5 @@ const styles = {
     color: 'white'
   }
 }
+
 export default createContainer(LoginPage)
