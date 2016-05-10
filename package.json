@@ -39,7 +39,7 @@
     "react-router": "^2.4.0",
     "redis-url": "^1.2.1",
     "relay-amelisa": "^0.1.0",
-    "ws": "^1.0.1"
+    "ws": "^1.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
@@ -70,7 +70,7 @@
     "snazzy": "^4.0.0",
     "standard": "^7.0.1",
     "style-loader": "^0.13.0",
-    "webpack": "^1.12.2",
+    "webpack": "^1.13.0",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^2.4.1"
   },
