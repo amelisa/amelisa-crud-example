@@ -20,6 +20,7 @@ class HtmlLayout extends Component {
     return (
       <html>
         <head>
+          <title>Amelisa CRUD Example</title>
           <meta name='viewport' content='width=device-width, initial-scale=1.0' />
           <meta charSet='utf-8' />
           <link rel='stylesheet' href='/extra/material.min.css' />
