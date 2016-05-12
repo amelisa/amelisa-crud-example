@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { createContainer } from 'react-amelisa'
 import { Button, Card, CardTitle, CardText, CardActions } from 'react-mdl'
 import { Link } from 'react-router'
-import { Content, Header, Layout } from '../../components/layout'
+import { Content, Header, Layout } from '../../../components/layout'
 import { Item } from '../components/item'
 
 const itemsOnPage = 5

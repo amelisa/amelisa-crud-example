@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { createContainer } from 'react-amelisa'
 import { Header } from 'react-mdl'
-import { Content, Layout } from '../../components/layout'
+import { Content, Layout } from '../../../components/layout'
 import { Login, LoginProviders, Register } from '../components/auth'
 import backgroundImage from './backgroundImage'
 

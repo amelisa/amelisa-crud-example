@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { createContainer } from 'react-amelisa'
-import { Content, Header, Layout } from '../../components/layout'
+import { Content, Header, Layout } from '../../../components/layout'
 import { Item } from '../components/item'
 
 class ItemPage extends Component {

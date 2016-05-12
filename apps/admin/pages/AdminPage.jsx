@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import Relay, { createContainer } from 'react-relay'
 import { Header } from 'react-mdl'
-import { Content, Layout } from '../../components/layout'
+import { Content, Layout } from '../../../components/layout'
 
 class AdminPage extends Component {
 

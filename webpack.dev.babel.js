@@ -8,10 +8,20 @@ config.cache = true
 config.entry.webpack = 'webpack-hot-middleware/client'
 
 config.plugins = [
+  new webpack.DefinePlugin({'process.env': {
+    NODE_ENV: `"${process.env.NODE_ENV}"`,
+    BASE_URL: `"${process.env.BASE_URL}"`
+  }}),
   new webpack.optimize.OccurenceOrderPlugin(),
-  new webpack.DefinePlugin({'process.env': {NODE_ENV: '"development"'}}),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin()
+]
+
+config.module.loaders = [
+  {include: /\.json$/, loaders: ['json']},
+  {include: /\.js$/, loaders: ['babel'], exclude: /(node_modules)/},
+  {include: /\.jsx$/, loaders: ['react-hot', 'babel', 'react-prefix'], exclude: /(node_modules)/},
+  {include: /\.css$/, loaders: ['style', 'css']}
 ]
 
 config.devServer = {

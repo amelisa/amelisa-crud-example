@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Button, Card, CardTitle, CardText, CardActions, Textfield } from 'react-mdl'
-import { Content, Header, Layout } from '../../components/layout'
+import { Content, Header, Layout } from '../../../components/layout'
 
 class CreatePage extends Component {
 

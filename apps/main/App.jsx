@@ -5,7 +5,7 @@ import { setLoading } from 'react-amelisa'
 import { dbQueries } from 'amelisa-mongo'
 import { getModel, IndexedDbStorage } from 'amelisa'
 import Routes from './Routes'
-import Loading from '../components/Loading'
+import Loading from '../../components/Loading'
 
 // set default loading page
 setLoading(Loading)

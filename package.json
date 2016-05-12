@@ -7,9 +7,7 @@
     "update-schema": "babel-node ./scripts/updateSchema.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "standard | snazzy",
-    "start": "concurrent 'npm run dev-styles' 'npm run dev-server'",
-    "dev-server": "nodemon server.js",
-    "dev-styles": "gulp",
+    "start": "concurrent 'nodemon server.js' 'gulp'",
     "prod-server": "NODE_ENV=production node server.js",
     "build": "gulp build && webpack --progress --config webpack.prod.babel.js",
     "analyze": "webpack --progress --config webpack.prod.babel.js --json | webpack-bundle-size-analyzer"

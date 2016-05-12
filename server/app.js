@@ -10,15 +10,15 @@ import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackConfig from '../webpack.dev.babel'
-// import adminRoutes from '../admin/Routes'
-import appRoutes from '../app/Routes'
-import promoRoutes from '../promo/Routes'
+// import adminRoutes from '../apps/admin/Routes'
+import mainRoutes from '../apps/main/Routes'
+import promoRoutes from '../apps/promo/Routes'
 import store from './store'
 import { options as authOptions } from './auth'
 import HtmlLayout from '../components/HtmlLayout'
 
 const appsRoutes = {
-  app: appRoutes,
+  main: mainRoutes,
   // admin: adminRoutes,
   promo: promoRoutes
 }

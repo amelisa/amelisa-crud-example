@@ -7,46 +7,44 @@ module.exports = {
   context: __dirname,
   devtool: false,
   entry: {
-    admin: './admin',
-    app: './app',
-    promo: './promo'
+    admin: './apps/admin',
+    main: './apps/main',
+    promo: './apps/promo'
   },
   output: {
-    path: __dirname + '/public/js',
+    path: path.resolve('./public/js'),
     filename: '[name].bundle.js',
     chunkFilename: '[name].[id].js',
     publicPath: '/js/'
   },
   plugins: [
-    new webpack.DefinePlugin({'process.env': {NODE_ENV: '"production"'}}),
-    new webpack.optimize.DedupePlugin(),
+    new webpack.DefinePlugin({'process.env': {
+      NODE_ENV: `"${process.env.NODE_ENV}"`,
+      BASE_URL: `"${process.env.BASE_URL}"`
+    }}),
     new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      mangle: {
-        keep_fnames: true
-      }
+      compress: { warnings: false },
+      mangle: { keep_fnames: true }
     })
   ],
   module: {
     loaders: [
       {include: /\.json$/, loaders: ['json']},
       {include: /\.js$/, loaders: ['babel'], exclude: /(node_modules)/},
-      {include: /\.jsx$/, loaders: ['react-hot', 'babel', 'react-prefix'], exclude: /(node_modules)/},
-      {include: /\.css$/, loaders: ['style', 'css']}
+      {include: /\.jsx$/, loaders: ['babel', 'react-prefix'], exclude: /(node_modules)/}
     ]
   },
   reactPrefixLoader: {
     ignore: /^mdl-/
   },
   resolveLoader: {
-    root: __dirname + '/node_modules'
+    root: path.resolve('./node_modules')
   },
   resolve: {
     extensions: ['', '.json', '.js', '.jsx'],
-    fallback: [path.join(__dirname, 'node_modules')],
+    fallback: [path.resolve('./node_modules')],
     alias: {
       react: path.resolve('./node_modules/react'),
       'react-dom': path.resolve('./node_modules/react-dom')

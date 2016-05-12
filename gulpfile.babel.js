@@ -1,3 +1,4 @@
+import fs from 'fs'
 import gulp from 'gulp'
 import stylus from 'gulp-stylus'
 import concat from 'gulp-concat'
@@ -5,8 +6,9 @@ import postcss from 'gulp-postcss'
 import autoprefixer from 'autoprefixer'
 import postcssFilenamePrefix from 'postcss-filename-prefix'
 
-const apps = ['admin', 'app', 'promo']
-const processors = [autoprefixer, postcssFilenamePrefix]
+const appsFolder = 'apps'
+let apps = fs.readdirSync(appsFolder)
+const processors = [autoprefixer, postcssFilenamePrefix({ignore: /^mdl-/})]
 
 function css () {
   for (let app of apps) {
