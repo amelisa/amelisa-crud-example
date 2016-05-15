@@ -17,6 +17,7 @@ let model = getModel({
 // try to enter 'model.get()' in dev console to see all data in model
 window.model = model
 
+// inject amelisa's network layer to connect Relay with Amelisa
 injectNetworkLayer(new NetworkLayer(model))
 
 // 'ready' means that connection with server has estabilished and data is synced
@@ -25,7 +26,7 @@ model.on('ready', () => {
   render(
     <RootContainer
       Component={AdminPage}
-      route={new AdminRoute()}
+      route={new AdminRoute({userId: model.get('_session.userId')})}
     />
   , document.getElementById('root'))
 })

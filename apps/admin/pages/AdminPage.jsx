@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Relay, { createContainer } from 'react-relay'
-import { Header } from 'react-mdl'
+import { Card, CardTitle, CardText, Header } from 'react-mdl'
 import { Content, Layout } from '../../../components/layout'
 
 class AdminPage extends Component {
@@ -14,13 +14,24 @@ class AdminPage extends Component {
   }
 
   render () {
-    let { users } = this.props
+    let { viewer } = this.props
 
     return (
       <Layout>
         <Header transparent title='Amelisa CRUD Example (Admin)' />
         <Content>
-          {users.map((user) => <div>{user.email}</div>)}
+          {viewer.users.map((user) => (
+            <Card key={user.id} style={styles.listMenu} shadow={1}>
+              <CardTitle style={styles.listTitle}>
+                {user.name} has {user.items.length} items
+              </CardTitle>
+              <CardText style={styles.listText}>
+                {user.items.map((item) => (
+                  <p key={item.id}>{item.name}</p>
+                ))}
+              </CardText>
+            </Card>
+          ))}
         </Content>
       </Layout>
     )
@@ -31,11 +42,21 @@ const styles = {}
 
 export default createContainer(AdminPage, {
     fragments: {
-      users: () => Relay.QL`
-        fragment on User @relay(plural: true) {
+      viewer: () => Relay.QL`
+        fragment on Viewer {
           id,
           name,
-          email
+          email,
+          users {
+            id,
+            name,
+            email,
+            items {
+              id,
+              name,
+              description
+            }
+          }
         }
       `
     }

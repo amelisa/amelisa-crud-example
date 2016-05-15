@@ -46,33 +46,38 @@ function createSchema (resolve) {
     })
   })
 
+  let Viewer = new GraphQLObjectType({
+    name: 'Viewer',
+    fields: () => ({
+      id: {
+        type: GraphQLString
+      },
+      name: {
+        type: GraphQLString
+      },
+      email: {
+        type: GraphQLString
+      },
+      users: {
+        type: new GraphQLList(User),
+        resolve (parent, args) {
+          return resolve('users', {})
+        }
+      }
+    })
+  })
+
   let RootType = new GraphQLObjectType({
     name: 'Query',
     fields: () => ({
-      user: {
-        type: User,
+      viewer: {
+        type: Viewer,
         args: {
           id: { type: GraphQLString }
         },
         resolve: (parent, args) => {
           let { id } = args
           return resolve('users', id)
-        }
-      },
-      users: {
-        type: new GraphQLList(User),
-        resolve: (parent, args) => {
-          return resolve('users', {})
-        }
-      },
-      item: {
-        type: Item,
-        args: {
-          id: { type: GraphQLString }
-        },
-        resolve: (parent, args) => {
-          let { id } = args
-          return resolve('items', id)
         }
       }
     })
