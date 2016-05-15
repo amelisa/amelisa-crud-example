@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { Input } from 'react-amelisa'
 import { Button, Card, CardTitle, CardText, CardActions, Textfield } from 'react-mdl'
-// import DraftEditor from '../editor/DraftEditor'
+// import DraftEditor from '../draft/DraftEditor'
+import QuillEditor from '../quill/QuillEditor'
 
 class Item extends Component {
 
@@ -38,7 +39,8 @@ class Item extends Component {
             <Input collectionName='items' docId={item.id} field='description'>
               <Textfield floatingLabel label='description' rows={5} />
             </Input>
-            {/* <DraftEditor value={doc.longDescription} onChange={this.onRichChange} />*/}
+            {/* <DraftEditor value={doc.longDescription} onChange={this.onDraftChange} />*/}
+            <QuillEditor value={item.richDescription} onChange={this.onRichChange} />
           </CardText>
         )}
         <CardActions border>
@@ -57,11 +59,18 @@ class Item extends Component {
     model.set(['items', item.id, 'name'], value)
   }
 
-  onRichChange = (value) => {
-    let { docId } = this.props.params
+  onDraftChange = (value) => {
+    let { item } = this.props
     let { model } = this.context
 
-    model.richDiff(['items', docId, 'longDescription'], value)
+    model.draftDiff(['items', item.id, 'longDescription'], value)
+  }
+
+  onRichChange = (value) => {
+    let { item } = this.props
+    let { model } = this.context
+
+    model.rich(['items', item.id, 'richDescription'], value)
   }
 
   onEdit = () => {

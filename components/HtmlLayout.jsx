@@ -25,6 +25,7 @@ class HtmlLayout extends Component {
           <meta charSet='utf-8' />
           <link rel='stylesheet' href='/extra/material.min.css' />
           <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons' />
+          {app === 'main' && <link rel='stylesheet' href='//cdn.quilljs.com/0.20.1/quill.snow.css' />}
           {style}
         </head>
         <body>
