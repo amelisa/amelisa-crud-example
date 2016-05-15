@@ -46,8 +46,13 @@ module.exports = {
     extensions: ['', '.json', '.js', '.jsx'],
     fallback: [path.resolve('./node_modules')],
     alias: {
-      react: path.resolve('./node_modules/react'),
-      'react-dom': path.resolve('./node_modules/react-dom')
+      'react': path.resolve('./node_modules/react'),
+      'react-dom': path.resolve('./node_modules/react-dom'),
+      'amelisa': path.resolve('./node_modules/amelisa'),
+      'amelisa-mongo': path.resolve('./node_modules/amelisa-mongo'),
+      'amelisa-redis': path.resolve('./node_modules/amelisa-redis'),
+      'react-amelisa': path.resolve('./node_modules/react-amelisa'),
+      'relay-amelisa': path.resolve('./node_modules/relay-amelisa')
     }
   },
   node: {
