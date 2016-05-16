@@ -12,7 +12,7 @@ const processors = [autoprefixer, postcssFilenamePrefix({ignore: /^mdl-/})]
 
 function css () {
   for (let app of apps) {
-    gulp.src(['styles/index.styl', `${app}/**/*.styl`])
+    gulp.src(['styles/index.styl', `apps/${app}/**/*.styl`])
       .pipe(stylus({
         'include css': true
       }))
