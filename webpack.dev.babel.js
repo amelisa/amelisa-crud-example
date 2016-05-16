@@ -5,7 +5,9 @@ config.cache = true
 // config.debug = true
 // config.devtool = 'eval'
 
-config.entry.webpack = 'webpack-hot-middleware/client'
+for (let key in config.entry) {
+  config.entry[key] = [config.entry[key], 'webpack-hot-middleware/client']
+}
 
 config.plugins = [
   new webpack.DefinePlugin({'process.env': {
